@@ -1,7 +1,12 @@
 # TheoryForge
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21329228.svg)](https://doi.org/10.5281/zenodo.21329228)
+
 **Operator-Guided Autonomous Theory Formation in Mathematics** — the *Discovery
 Plane* of the Bourbaki Engine.
+
+> Archived on Zenodo: concept DOI [`10.5281/zenodo.21329228`](https://doi.org/10.5281/zenodo.21329228)
+> (this checkpoint: [`10.5281/zenodo.21329229`](https://doi.org/10.5281/zenodo.21329229)).
 
 > **Status: PLANNING / UNFROZEN. No implementation, no experiments, no
 > discoveries.** This repository currently contains the Section-19 first
