@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://theoryforge.dev/schema/operator.schema.json",
+  "title": "TheoryForge Discovery Operator (DRAFT / UNFROZEN)",
+  "description": "Draft contract for a discovery operator. See 00_FIRST_RESPONSE.md §4. This schema is a proposal, not frozen; field names may change at P0/P2.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["name", "input_types", "output_state", "cost_model"],
+  "properties": {
+    "schema_version": { "const": "theoryforge-operator/0.1-draft" },
+    "name": {
+      "type": "string",
+      "enum": [
+        "SPECIALIZE", "GENERALIZE", "COUNTEREXAMPLE_FIRST", "NEGATE_AND_SEARCH",
+        "DUALIZE", "CHANGE_REPRESENTATION", "TRANSFER", "MINIMAL_MISSING_LEMMA",
+        "EXTREMALIZE", "STABILITY", "BARRIER_SEARCH", "FORMALIZE_EARLY",
+        "SYNTHESIZE_DEFINITION"
+      ]
+    },
+    "input_types": {
+      "type": "array",
+      "description": "MIRADOR object types this operator consumes.",
+      "items": {
+        "enum": [
+          "CONCEPT", "DEFINITION", "CONSTRUCTION", "STATEMENT", "QUESTION",
+          "CONJECTURE", "LEMMA", "THEOREM", "EXAMPLE", "COUNTEREXAMPLE",
+          "REDUCTION", "EQUIVALENCE", "BARRIER", "PROOF", "REFUTATION",
+          "EXPERIMENT", "CERTIFICATE", "CHECKER", "HEURISTIC", "TRANSLATION"
+        ]
+      },
+      "minItems": 1
+    },
+    "preconditions": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Named predicates over (input cells, Evidence Bundle) that must hold before transform runs."
+    },
+    "output_state": {
+      "description": "The only states an operator may emit. NEVER a promoted/audited state — TheoryForge has no promotion authority.",
+      "enum": ["DRAFT", "OPEN", "EVIDENCE"]
+    },
+    "output_types": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "MIRADOR object types this operator may produce."
+    },
+    "validators": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Cheap self-checks run before emission (e.g. IR grammar type-check, exact-arithmetic witness re-check, non-collision)."
+    },
+    "failure_modes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "signature"],
+        "properties": {
+          "name": { "type": "string" },
+          "signature": { "type": "string", "description": "Detectable condition that identifies this failure." },
+          "emit_instead": { "type": "string", "description": "What is emitted on this failure (e.g. a bounded-search barrier note) — never silence." }
+        }
+      }
+    },
+    "cost_model": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["accounts"],
+      "properties": {
+        "accounts": {
+          "type": "array",
+          "items": { "enum": ["tokens", "compute_seconds", "usd", "tool_calls", "wall_clock_s"] },
+          "minItems": 1
+        }
+      }
+    },
+    "genealogy_fields": {
+      "type": "array",
+      "description": "Provenance recorded on every emitted candidate cell.",
+      "items": { "enum": ["operator", "parents", "bundle_hash", "model_version", "prompt_version", "seed"] },
+      "default": ["operator", "parents", "bundle_hash", "model_version", "prompt_version", "seed"]
+    }
+  }
+}

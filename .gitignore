@@ -1,0 +1,26 @@
+# LaTeX build artifacts (keep .tex and .pdf; .bbl is embedded)
+*.aux
+*.log
+*.out
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.blg
+
+# Python
+__pycache__/
+*.pyc
+*.egg-info/
+.pytest_cache/
+
+# Secrets — never commit tokens/credentials
+*.env
+.env
+*token*
+*secret*
+*credential*
+
+# OS / editor junk
+.DS_Store
+*.swp

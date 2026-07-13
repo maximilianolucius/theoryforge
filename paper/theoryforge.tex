@@ -1,0 +1,743 @@
+\documentclass[11pt]{amsart}
+%==============================================================
+%  TheoryForge: Operator-Guided Autonomous Theory Formation
+%  in Mathematics.
+%
+%  CHECKPOINT DRAFT. Design + protocol are written; empirical
+%  sections are explicitly marked as gaps ("TO COMPLETE") and
+%  contain NO fabricated results. Companion to the Bourbaki
+%  Engine (Discovery Plane), MIRADOR, ProofContext,
+%  CongressBench, and the Bang affine-plank pilot.
+%==============================================================
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage[margin=1in]{geometry}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\usepackage{manfnt} % \dbend --- the dangerous-bend glyph, used to flag gaps
+\emergencystretch=1.5em
+
+\theoremstyle{definition}
+\newtheorem{principle}{Principle}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{contract}{Contract}[section]
+\newtheorem{task}{Task}
+\theoremstyle{remark}
+\newtheorem{remark}[definition]{Remark}
+
+\newcommand{\engine}{\textsc{Bourbaki Engine}}
+\newcommand{\mirador}{\textsc{Mirador}}
+\newcommand{\pc}{\textsc{ProofContext}}
+\newcommand{\cb}{\textsc{CongressBench}}
+\newcommand{\tf}{\textsc{TheoryForge}}
+\newcommand{\tb}{\textsc{TheoryBench}}
+\newcommand{\state}[1]{\texttt{[#1]}}
+\newcommand{\otype}[1]{\textsc{#1}}
+\newcommand{\op}[1]{\texttt{#1}}
+\newcommand{\yes}{$\bullet$}
+\newcommand{\pt}{$\circ$}
+\newcommand{\no}{--}
+
+% Gap marker: everything not yet done is boxed and flagged, never hidden.
+\newcommand{\gap}[1]{\par\medskip\noindent%
+  \fbox{\parbox{0.965\linewidth}{\dbend~\textbf{TO COMPLETE.}\ \itshape #1}}\par\medskip}
+\newcommand{\ev}[1]{\textsf{\footnotesize[#1]}} % evidence tag
+
+\title[TheoryForge]{TheoryForge: Operator-Guided Autonomous Theory
+Formation in Mathematics\\[2pt]
+\normalsize\itshape From Theorem Proving to Definitions, Invariants,
+Reductions, and Research Programs}
+\author{Maximiliano Lucius}
+\address{Instituto Tecnol\'ogico de Buenos Aires, CABA, Argentina}
+\email{maximiliano.lucius@tutamail.com}
+\author{Jos\'e Minich}
+\address{Instituto Tecnol\'ogico de Buenos Aires, C\'ordoba, Argentina}
+\email{jminich@gmail.com}
+\date{Checkpoint draft --- \today}
+
+\begin{document}
+
+\begin{abstract}
+Autonomous systems now emit plausible research-level mathematics, but emitting a
+statement is not discovery: novelty, truth, utility, and nontriviality are
+separate axes. We present \tf{}, the \emph{Discovery Plane} of the \engine{}:
+an operator-guided architecture whose task is not to prove a supplied theorem
+but to \emph{form theory} --- to synthesize definitions, invariants,
+conjectures, reductions, counterexamples, barriers, and research programs whose
+value survives \emph{independent} verification. \tf{} generates typed
+\emph{Mathematical Cells} through a library of thirteen discovery operators
+(e.g.\ \op{SYNTHESIZE\_DEFINITION}, \op{COUNTEREXAMPLE\_FIRST},
+\op{MINIMAL\_MISSING\_LEMMA}, \op{BARRIER\_SEARCH}), records their genealogy on
+an immutable event log, and --- by construction, not by policy --- holds
+\emph{no promotion authority}: only an independent Congress may promote a claim.
+It reuses three existing substrates: \mirador{} (representation and
+content-addressed identity), \pc{} (dependency-aware retrieval into hashed
+Evidence Bundles), and a \cb{}-compatible reviewer interface. We define \tb{},
+a four-tier evaluation ladder (synthetic worlds, retrospective rediscovery,
+expert-authored unseen tasks, and a governed open frontier), a preregistered
+baseline/ablation protocol, and a five-stage novelty--verification gauntlet in
+which counterexample search precedes expensive proof promotion. The integrated
+case study is Bang's affine plank conjecture, using a frozen, hash-pinned corpus
+of a submission-ready campaign.
+
+\medskip
+\noindent\dbend~\textbf{Status.} This is a \emph{design and protocol checkpoint}.
+The architecture, operator specifications, benchmark design, and evaluation
+protocol are written and grounded in the existing codebases; \textbf{no
+discovery experiment has been run, and no empirical result is reported.}
+Sections whose content depends on frozen-then-executed experiments are marked
+\dbend~\textbf{TO COMPLETE} and contain no fabricated numbers.
+\end{abstract}
+
+\maketitle
+
+\tableofcontents
+
+%================================================================
+\section{Introduction}\label{sec:intro}
+
+A model that prints an unfamiliar-looking statement has not made a discovery.
+Discovery requires that the statement be \emph{true} (or that its falsity be a
+useful counterexample), \emph{novel}, \emph{nontrivial}, and \emph{useful} to
+subsequent work --- four axes that must be judged separately, and none of which
+is established by fluency. This paper concerns the machinery that produces
+candidate mathematics under exactly that discipline.
+
+\tf{} is the \emph{Discovery Plane} of the \engine{}~\cite{lucius2026engine}, a
+governed architecture that separates two institutions: a Discovery Plane that
+\emph{proposes} (and may be exploratory, redundant, or speculative) and a Trust
+Plane that alone may \emph{promote} a claim into load-bearing knowledge. In the
+engine's prior specification the Discovery Plane was described but not built (its
+maturity code is ``conceptual'')~\ev{evidenced: Bourbaki \texttt{audits/CLAIM\_LEDGER.md}}.
+\tf{} is that missing implementation, together with a benchmark (\tb{}) and an
+evaluation protocol.
+
+\paragraph{Five levels, two targets.} We distinguish
+(i)~\emph{proof search} (derive a fixed claim);
+(ii)~\emph{conjecture generation} (propose statements);
+(iii)~\emph{program synthesis} (evaluator-optimized executable objects);
+(iv)~\emph{theory formation} (a \emph{network} of definitions, claims,
+transformations, and explanatory structure); and
+(v)~\emph{research-program formation} (deciding which families of questions and
+representations deserve sustained effort). \tf{} targets (iv) and (v), using
+(i)--(iii) as components. This is the line separating it from proof-only agents
+such as QED~\cite{QED26}, RMA~\cite{RMA26}, Prover Agent~\cite{ProverAgent25},
+and LEAP~\cite{LEAP26}, and from program-search discovery such as
+FunSearch~\cite{RomeraParedes24} and AlphaEvolve~\cite{AlphaEvolve25}, which
+optimize an executable against a fixed evaluator rather than forming a theory.
+
+\paragraph{Contributions (of this checkpoint).}
+\begin{enumerate}
+\item A precise \emph{theory-formation task} over a frozen, content-addressed
+corpus, with a typed output ontology of Mathematical Cells
+(\S\ref{sec:task}).
+\item A library of \textbf{thirteen discovery operators} with a common typed
+interface --- input types, preconditions, transform, output state, validators,
+failure modes, and cost accounting (\S\ref{sec:operators}, App.~\ref{app:ops}).
+\item An \textbf{authority-separated architecture} that reuses \mirador{},
+\pc{}, and a \cb{}-compatible reviewer, and in which \tf{} structurally cannot
+promote (\S\ref{sec:arch}).
+\item \tb{}, a \textbf{four-tier evaluation ladder} and task ontology, and a
+preregistered baseline/ablation protocol (\S\S\ref{sec:theorybench}--\ref{sec:protocol}).
+\item A \textbf{five-stage novelty--verification gauntlet} and a multidimensional
+\emph{Verified Knowledge Gain} record (\S\ref{sec:novelty}).
+\item A \textbf{frozen, hash-pinned case study} of Bang's affine plank
+conjecture, separating rediscovery targets from genuinely open targets
+(\S\ref{sec:bang}, App.~\ref{app:freeze}).
+\end{enumerate}
+Empirical evaluation (\S\ref{sec:results}) is deferred until the protocol is
+frozen; this paper does not report it.
+
+%================================================================
+\section{From Theorem Proving to Theory Formation}\label{sec:fromproving}
+
+Automated mathematics has a long spine: the Logic Theory
+Machine~\cite{NewellSimon57}, proof planning~\cite{Bundy88}, the Robbins
+problem~\cite{McCune97}, and large formal verifications~\cite{AppelHaken77,
+Gonthier08, Hales17, Heule16}. Theory \emph{formation} --- inventing concepts,
+conjecturing, and finding counterexamples --- was pioneered by AM~\cite{Lenat77}
+and systematized in HR~\cite{Colton02}, and remains an active target for the
+selection problem of ``interestingness''~\cite{Interestingness25}. What is new
+is the confluence of (a)~fluent large-model generation, (b)~a governed,
+content-addressed knowledge substrate with deterministic
+invalidation~\cite{lucius2026mirador}, and (c)~an explicit separation between
+proposing and promoting~\cite{lucius2026engine}.
+
+The methodological claim of \tf{} is that \emph{explicit discovery operators},
+under a counterexample-first policy and a fixed information boundary, outperform
+unconstrained ``think harder'' prompting on theory-formation tasks --- a claim
+this paper makes \emph{testable} (\S\ref{sec:protocol}) rather than asserts.
+
+%================================================================
+\section{Task Definition and Output Ontology}\label{sec:task}
+
+\begin{task}[Theory formation]\label{task:tf}
+Given
+(a)~a \emph{governed corpus} $\mathcal{C}@v$ --- a set of Mathematical Cells at a
+frozen content-addressed version $v$;
+(b)~a \emph{frontier} $\mathcal{F}\subseteq\mathcal{C}@v$ --- open questions and
+their dependency neighbourhood;
+(c)~a \emph{campaign constitution} $K$ --- exact conventions, admissible
+dependencies, per-claim-class certificate standards, novelty/attribution policy,
+and stopping conditions; and
+(d)~a \emph{budget} $B$ split across six reserves (exploit, orthogonal explore,
+counterexample, formalize, barrier, reproduce),
+produce a set of typed Mathematical Cells, each created only in state
+\state{DRAFT}, \state{OPEN}, or \state{EVIDENCE}, each carrying full genealogy
+and a fixed information boundary, maximizing \emph{Verified Knowledge Gain}
+(\S\ref{sec:novelty}) per unit cost --- where ``verified/novel'' is decided by
+independent downstream machinery, never by \tf{}.
+\end{task}
+
+\paragraph{Output ontology.} Outputs are \mirador{} Mathematical
+Cells~\cite{lucius2026mirador}: a canonical claim (IR statement plus its
+identity-bearing context $\Gamma$) bound to dependencies, transformations,
+artifacts, provenance, reviews, and an \emph{epistemic state}. Two commitments
+are inherited and load-bearing~\ev{evidenced: \mirador{}
+\texttt{schema/mathematical-cell.schema.json}}:
+\emph{object type} (one of twenty: \otype{Definition}, \otype{Conjecture},
+\otype{Reduction}, \otype{Counterexample}, \otype{Barrier}, \ldots) is
+\emph{orthogonal} to \emph{epistemic state} (one of eleven:
+\state{DRAFT}$\to$\state{OPEN}$\to$\state{EVIDENCE}$\to$\state{CANDIDATE}$\to$%
+\state{FORMALIZED}$\to$\state{AUDITED}$\to$\state{PROMOTED}, plus
+\state{REFUTED}, \state{NO\_GO}, \state{SUSPECT}, \state{RETIRED}); and
+\emph{claim identity is the SHA-256 of the statement and its context}, never the
+prose surface, epistemic state, or artifacts. A cell that is merely reworded has
+the same identity; a renamed ``discovery'' therefore collides and is not novel
+(\S\ref{sec:novelty}). \tf{} emits cells no higher than \state{EVIDENCE}.
+
+%================================================================
+\section{Discovery Operators}\label{sec:operators}
+
+Each operator implements a common typed interface (App.~\ref{app:ops};
+schema \texttt{schema/operator.schema.json}):
+\[
+\text{\op{name}},\ \text{\op{input\_types}},\ \text{\op{preconditions}},\
+\text{\op{transform}},\ \text{\op{output\_state}},\ \text{\op{validators}},\
+\text{\op{failure\_modes}},\ \text{\op{cost}}.
+\]
+Every emitted candidate records its genealogy --- operator, parents,
+Evidence-Bundle hash, model and prompt versions, and seed --- and is serialized
+through \mirador{} so that identity is its \texttt{content\_hash}. Output state
+is capped at \state{EVIDENCE}. Numeric witnesses are re-checked in \emph{exact}
+arithmetic: a numeric grid is never a proof.
+
+Table~\ref{tab:ops} summarizes the thirteen operators; four representative full
+specifications appear in Appendix~\ref{app:ops}. Two operators
+(\op{TRANSFER}, \op{CHANGE\_REPRESENTATION}) depend on a cross-domain analogy
+retrieval that \pc{} does not yet expose (a v1 gap; \S\ref{sec:limits}, B2).
+
+\begin{table}[t]\small
+\caption{The thirteen discovery operators.}\label{tab:ops}
+\begin{tabular}{@{}p{3.1cm}p{9.2cm}@{}}
+\toprule
+Operator & Purpose (output object $\to$ max state)\\
+\midrule
+\op{SPECIALIZE} & Restrict parameters/dimension/symmetry to expose tractable structure ($\to$\state{OPEN}).\\
+\op{GENERALIZE} & Identify which assumptions a proof actually uses; propose a broader object.\\
+\op{COUNTEREXAMPLE\_FIRST} & Attack a claim before allocating proof effort ($\to$\state{EVIDENCE}).\\
+\op{NEGATE\_AND\_SEARCH} & Compile negation to model/SAT/SMT/combinatorial search.\\
+\op{DUALIZE} & Construct a dual formulation and an explicit correspondence obligation.\\
+\op{CHANGE\_REPRESENTATION} & Move among geometric, analytic, algebraic, combinatorial, probabilistic, logical, and computational forms.\\
+\op{TRANSFER} & Import a pattern from another domain with a transport proof obligation.\\
+\op{MINIMAL\_MISSING\_LEMMA} & Infer the weakest obligation that closes/advances a gapped blueprint.\\
+\op{EXTREMALIZE} & Search for equality cases, extremizers, and rigid families.\\
+\op{STABILITY} & Ask what near-extremal objects must resemble.\\
+\op{BARRIER\_SEARCH} & Prove a method family cannot cross a bound/obstruction ($\to$ \state{NO\_GO}/\state{EVIDENCE}).\\
+\op{FORMALIZE\_EARLY} & Compile early to reveal hidden assumptions.\\
+\op{SYNTHESIZE\_DEFINITION} & Propose a concept that compresses repeated patterns; test if it improves statements, proofs, or retrieval.\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%================================================================
+\section{TheoryForge Architecture}\label{sec:arch}
+
+\tf{} runs a closed but authority-separated loop: constitution $\to$ \pc{}
+Evidence Bundle $\to$ frontier analysis $\to$ operator selection $\to$ candidate
+generation $\to$ exact experiments and counterexample search $\to$ formalization
+or certificate extraction $\to$ \emph{independent Congress} $\to$ promoted result
+or structured failure $\to$ updated corpus and scheduler priors.
+The Congress step is the one-way membrane: every step before it may only
+\emph{propose};
+only the Congress promotes. Because \tf{} writes through
+\mirador{}~\cite{lucius2026mirador}, whose transition table forbids an author
+from promoting its own cell and requires \texttt{actor=congress} with
+independence level $\ge 3$, the ``no promotion authority'' property is
+structural~\ev{evidenced: \mirador{} \texttt{transitions.check\_transition}}.
+
+\begin{contract}[Reused substrates]\label{con:substrates}
+\mirador{} provides the cell IR, content-addressed identity, dependency graph,
+event log, and deterministic invalidation~\cite{lucius2026mirador}. \pc{}
+provides dependency-aware retrieval into a hashed Evidence
+Bundle~\cite{lucius2026proofcontext} via \texttt{ProofContext.query(nl).bundle}.
+Independent review conforms to the \cb{} \texttt{Reviewer} interface and
+\texttt{review.schema.json}~\cite{lucius2026congressbench}. \tf{} depends on
+these interfaces, not their internals.
+\end{contract}
+
+\paragraph{Modules.} frontier mapper; operator policy; candidate generator;
+symbolic/computational laboratory (exact arithmetic); counterexample engine;
+proof planner; \mirador{} serializer; \pc{} client; formal-backend adapter (see
+B1); \cb{}-compatible reviewer interface; research-program scheduler
+(\S\ref{sec:scheduler}); and an immutable experiment/event logger.
+
+%================================================================
+\section{Research-Program Scheduling}\label{sec:scheduler}
+
+\tf{} manages a \emph{portfolio}, not a single chain of thought. Each program
+tracks: hypothesis, representation, target claims, known barriers, expected
+information gain, estimated cost, verification debt, novelty risk, dependencies,
+failed attempts, retreat conditions, and minimum publishable outcome. Explicit
+budgets are reserved for exploitation, orthogonal exploration, counterexample
+search, formalization, barriers, and reproduction. The scheduler score (a bandit
+/ tree-search heuristic in the tradition of~\cite{Auer02, Browne12}) allocates
+resources; \textbf{it is not evidence of mathematical truth}, and if a scalar is
+used its weights are preregistered (\S\ref{sec:novelty}).
+
+%================================================================
+\section{TheoryBench}\label{sec:theorybench}
+
+\begin{remark}[name]
+A name-availability check found no exact ``\tb{}'' but a crowded neighbourhood
+(MathBench, UGMathBench, TPBench, GTBench, LemmaBench)~\ev{evidenced: web check
+2026-07}. The name is provisional pending a less collision-prone choice.
+\end{remark}
+
+\tb{} spans four evaluation worlds. \textbf{Tier A --- synthetic worlds}: small
+formal universes with hidden rules, concepts, and invariants; exact ground truth
+and full contamination control (the primary quantitative tier). \textbf{Tier B
+--- retrospective}: time-slice a corpus before a known
+definition/lemma/bridge appeared and ask the system to reconstruct it;
+pretrained contamination is treated as a first-order threat and never called
+contamination-free. \textbf{Tier C --- expert-authored unseen}: external
+mathematicians supply withheld tasks and criteria. \textbf{Tier D --- open
+frontier}: bounded open subproblems under external expert governance, where
+success includes a new lemma, counterexample, reduction, barrier, or useful
+definition, not only full resolution.
+
+Task families: definition synthesis, invariant discovery, conjecture ranking,
+counterexample generation, minimal-missing-lemma extraction, representation
+change, cross-domain transfer, extremal-family recovery, stability conjecturing,
+barrier discovery, research-program selection. Each task manifest fixes:
+allowed corpus $@v$, allowed tools, hidden ground truth (where applicable),
+discovery budget, evaluation artifacts, novelty boundary, formal or expert
+checker, partial-credit rubric, and contamination risk.
+
+\gap{Concrete Tier-A synthetic universes (generators + checkers), the sealed
+Tier-C/D task set (stored hashed, released by a manifest event), and the
+per-family partial-credit rubrics are P5 deliverables. This section fixes the
+\emph{schema}; the instantiated task bank is not yet built.}
+
+%================================================================
+\section{Experimental Protocol}\label{sec:protocol}
+
+\paragraph{Baselines (fixed budget, task-compatible only).} Direct single-model
+prompting; best-of-$N$ sampling; tree/search prompting~\cite{Yao23};
+proposer--critic agents; proof-only agents~\cite{QED26,RMA26}; and executable
+program-search~\cite{RomeraParedes24}.
+
+\paragraph{Ablations of \tf{}.} $-$operator library; $-$\pc{};
+$-$counterexample-first policy; $-$early formalization; and full \tf{}
+(Table~\ref{tab:ablation}). Comparisons are within a setting only; benchmark
+numbers are never compared across incompatible settings.
+
+\begin{table}[t]\small
+\caption{Baseline/ablation matrix (arms $\times$ components).}\label{tab:ablation}
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+Arm & Operators & \pc{} & CE-first & Early-formalize & Scheduler\\
+\midrule
+direct prompt        & \no & \no & \no & \no & \no\\
+best-of-$N$          & \no & \no & \no & \no & \no\\
+tree/search          & \no & \no & \no & \no & \no\\
+proposer--critic     & \no & \no & \no & \no & \no\\
+proof-only           & \no & \no & \no & \no & \no\\
+program-search       & \no & \no & \no & \no & \no\\
+TF $-$operators      & \no & \yes & \yes & \yes & \yes\\
+TF $-$\pc{}          & \yes & \no & \yes & \yes & \yes\\
+TF $-$CE-first       & \yes & \yes & \no & \yes & \yes\\
+TF $-$early-formalize& \yes & \yes & \yes & \no & \yes\\
+\textbf{full TF}     & \yes & \yes & \yes & \yes & \yes\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Freeze.} Before any open-frontier run, five artifacts are frozen and
+hash-pinned as a \mirador{} event: (1)~this protocol; (2)~the Bang corpus
+manifest (App.~\ref{app:freeze}); (3)~the \tb{} task manifests and sealed set;
+(4)~the baseline/ablation matrix; (5)~the Verified-Knowledge-Gain weights.
+Open-frontier runs are inadmissible until the freeze event exists.
+
+%================================================================
+\section{Results and Ablations}\label{sec:results}
+
+\gap{\textbf{No experiments have been run.} This section will report, per \tb{}
+task family and per arm of Table~\ref{tab:ablation}, the multidimensional
+Verified Knowledge Gain of \S\ref{sec:novelty} at a fixed budget, with
+block-bootstrap confidence intervals and every number regenerable from raw
+artifacts under \texttt{results/}. Until the freeze (\S\ref{sec:protocol}) and
+the resolution of the blocking decisions (\S\ref{sec:limits}), the table shells
+below are intentionally empty. Negative and null results will be reported, not
+suppressed.}
+
+\begin{table}[h]\small
+\caption{[Shell] Verified Knowledge Gain per arm, Tier A. \emph{Empty pending
+frozen runs.}}\label{tab:results-shell}
+\begin{tabular}{@{}lcccccc@{}}
+\toprule
+Arm & Promoted & Refuted+CE & Barriers & Edges $\pm$ & Compression & Cost\\
+\midrule
+full TF & --- & --- & --- & --- & --- & ---\\
+\emph{(baselines/ablations)} & --- & --- & --- & --- & --- & ---\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%================================================================
+\section{Bang Affine Plank Case Study}\label{sec:bang}
+
+\paragraph{The problem.} A \emph{plank} of width $w$ is the region between two
+parallel hyperplanes at distance $w$; for a convex body $K$ and a plank $P$ with
+normal $u$, the relative width is $\mathrm{rw}_K(P)=\mathrm{width}(P)/
+\mathrm{width}_K(u)$. \emph{Bang's affine plank conjecture}
+(1951)~\cite{Bang51}: if $K$ is covered by planks $P_1,\dots,P_n$, then
+$\sum_i \mathrm{rw}_K(P_i)\ge 1$. Ball proved the centrally symmetric
+case~\cite{Ball91}; the general case is open since 1951, open already in the
+plane, already for three planks~\cite{BY26}, with best general lower bound
+$2/(1+\sqrt d)$~\cite{BY26}. Gardner posed the relative-width witness-measure
+existence question~\cite{Gardner88}.
+
+\paragraph{The frozen campaign.} The integrated case study freezes a
+submission-ready campaign on the triangle~\cite{Lucius26}
+(App.~\ref{app:freeze}). Its \emph{proved} results --- our \textbf{rediscovery
+targets} --- include, all with exact-arithmetic backing~\ev{evidenced:
+\texttt{drafts/affine-plank-triangle.tex}}:
+a transport-defect framework ($D_K(u)$, the least uniform-marginal bound) giving
+$\sum\mathrm{rw}\ge 1/D$; a \emph{median theorem with full rigidity} (three
+median planks give $\sum\ge1$, equality iff each is the central third); a
+\emph{weighted-perimeter witness} (edge masses $1-2p_j$); tightness and rigidity
+of the cyclic family; a \emph{three-direction characterization} (a
+uniform-marginal witness exists iff the three mid-level lines concur, settling
+Gardner's question for three directions on the triangle~\cite{Gardner88}); a
+\emph{normalizer obstruction} (Bang's chord-lemma step is sharp, so that
+argument cannot reach any normalizer beyond the longest chord); and one
+\emph{computer-assisted} result, $C^{111}_\Delta(\tau_0)=1$ at the tilted triple
+$\tau_0=(13/25,\tfrac12,\tfrac12)$, discharged by an exact-rational emptiness
+certificate ($812{,}651$ leaves) re-verified by an independent
+checker~\ev{evidenced: \texttt{c3\_sandwich\_certificate.txt},
+\texttt{bb\_certificate\_check.py}}.
+
+\paragraph{Rediscovery vs.\ novelty.} The \textbf{novelty targets} are the
+genuinely open subproblems: the quantitative three-plank constant for
+non-concurrent, non-facet triples ($C_\Delta(u)=1$?); the flagship
+\emph{thin-plank lemma} (which would lift the finite branch-and-bound to the
+whole cyclic family); sufficiency of concurrence for $d{+}1$ directions on
+$\Delta^{d\ge3}$; and the exact value of $\sup_u D_\Delta(u)\in[3/2,2]$. Any
+allegedly novel Bang output must pass the five-stage gauntlet of
+\S\ref{sec:novelty}.
+
+\begin{remark}[a naming discrepancy, reported not resolved]
+The project brief lists a ``\texttt{2F+1M}'' structure to reconstruct. No such
+object exists in the frozen corpus under any spelling~\ev{evidenced: corpus
+grep}; the closest are a ``three facets $+$ one plank'' theorem and a
+``3 facet planks $+$ 1 tilted'' note. We do \emph{not} invent a
+\texttt{2F+1M} theorem; the intended target requires author clarification
+(\S\ref{sec:limits}, B4).
+\end{remark}
+
+\begin{remark}[contamination, stated plainly]
+The Bang manuscript is public (repository and journal submission)~\ev{evidenced}.
+Tier-B rediscovery on it therefore \emph{cannot} be reported as
+contamination-free; rediscovered results are labeled rediscovery, never novelty.
+The corpus is frozen \emph{with} poison flags on an unretracted-but-unsound note
+and on early refuted drafts, so that a run which ``confirms'' them scores as a
+failure (App.~\ref{app:freeze}).
+\end{remark}
+
+\gap{The \tf{} discovery run over the frozen Bang corpus --- rediscovery scoring,
+and any open-target attempt under external expert governance (Tier D) --- is
+gated on the freeze and on blocking decisions B1--B7. No Bang discovery output is
+claimed in this checkpoint.}
+
+%================================================================
+\section{Novelty, Verification and Promotion}\label{sec:novelty}
+
+\paragraph{The five-stage gauntlet (counterexample-first).}
+(1)~\pc{} \emph{collision search} --- \texttt{content\_hash} plus
+\texttt{classify\_identity} and \texttt{probable\_similarity} over
+$\mathcal{C}@v$, and a literature audit for global novelty (must be built; the
+primitives exist in \mirador{} but \pc{} exposes no collision client, B2).
+(2)~\emph{adversarial counterexample search} \emph{before} any expensive proof
+effort.
+(3)~\emph{formal / certificate verification where feasible} --- default tier:
+exact-rational/symbolic certificate $+$ independent checker (the Bang standard,
+where the checker, not the search, is the authority); a proof assistant (Lean~4)
+is the named but not-yet-installed backend (B1, B6).
+(4)~\emph{fresh-context Congress} --- a \cb{}-conforming reviewer at condition
+$\ge$ C4 run by $\ge 2$ model families; the ACCEPT decision is the veto
+adjudicator's, never \tf{}'s.
+(5)~\emph{external expert review}, identified, not simulated.
+
+\paragraph{Verified Knowledge Gain.} A multidimensional record --- promoted
+claims; refuted conjectures with reusable counterexamples; certified barriers;
+dependency edges added/removed; theory compression; external novelty status;
+cost and verification debt --- \emph{not} an opaque scalar. Quality axes
+(correctness, novelty, utility, compression, robustness, efficiency) are measured
+separately; ``globally new'' and ``new-to-system'' are distinct labels and never
+merged.
+
+%================================================================
+\section{Related Work}\label{sec:related}
+
+\tf{} sits among automated theory formation (AM~\cite{Lenat77},
+HR~\cite{Colton02}, interestingness learning~\cite{Interestingness25}),
+conjecture-from-data~\cite{Davies21}, program-search
+discovery~\cite{RomeraParedes24, AlphaEvolve25}, auxiliary-construction
+geometry~\cite{Trinh24}, proof-only research
+agents~\cite{QED26, RMA26, ProverAgent25, LEAP26, Aletheia26}, and premise
+retrieval~\cite{LeanSearch26}. Its distinguishing commitments are the typed
+output ontology with orthogonal type/state, the propose/promote membrane, and a
+research-program memory across campaigns.
+
+\gap{The full comparison matrix (columns: fixed target, generates conjectures,
+synthesizes definitions, changes representation, finds counterexamples, finds
+barriers, formal verification, novelty audit, research-program memory) is a
+skeleton in \texttt{audits/RELATED\_WORK\_MATRIX.md}; its cells are \emph{unfilled}
+pending a primary-source literature sweep. \textbf{No firstness is claimed} until
+that matrix and the collision-search protocol are complete.}
+
+%================================================================
+\section{Threats to Validity}\label{sec:threats}
+
+We address, and design against: memorized discoveries; superficial renaming as
+novelty (caught by content-hash identity); false analogies; problem
+modification; reward hacking; evaluator overfitting; benchmark contamination;
+model monoculture (mitigated by $\ge 2$ reviewer families); invalid
+transformation edges; computational evidence promoted as proof (blocked by the
+certificate/checker standard); formalization of a weaker claim (tracked by
+\texttt{correspondence\_status}); publication-priority errors; endless
+speculative branching and premature convergence (scheduler retreat conditions);
+excessive verification debt; and human-expert selection bias. The acute,
+project-specific threat is Bang contamination (\S\ref{sec:bang}).
+
+%================================================================
+\section{Limitations and Research Agenda}\label{sec:limits}
+
+This is a checkpoint: the architecture and protocol are specified, not executed.
+Eight decisions block the freeze and are stated for the record (recommendations
+given, not decided here):
+\begin{description}
+\item[B1 Formal backend.] Lean~4 is named but not installed~\ev{evidenced: \cb{}
+B6}. Recommend adopting the exact-rational certificate $+$ checker as the default
+formal tier; Lean optional/gated.
+\item[B2 \pc{} gaps.] No cross-domain analogy retrieval and no collision-search
+client~\ev{evidenced}; blocks \op{TRANSFER}/\op{CHANGE\_REPRESENTATION} and
+gauntlet stage~1. Recommend building a thin collision wrapper over \mirador{};
+descope cross-domain analogy to a v1 limitation.
+\item[B3 Bang contamination.] Public manuscript; keep Bang as an illustrative
+case with rediscovery labeled as such, and make Tier-A synthetic worlds the
+primary quantitative evidence.
+\item[B4 \texttt{2F+1M} target.] No such object exists; needs PI clarification.
+\item[B5 Budget \& model families.] Reviewer independence needs $\ge 2$ families
+at real dollar cost.
+\item[B6 Frontier target \& expert.] Which open subproblem, and \emph{who} is the
+identified external expert (manuscript authors? outreach thread?).
+\item[B7 Congress composition.] \texttt{StubReviewer} is not evidence; a real
+evaluative Congress needs LLM reviewers plus a human expert.
+\item[B8 VKG scalar.] Multidimensional for reporting; a preregistered scalar only
+for scheduler allocation.
+\end{description}
+
+%================================================================
+\section{Conclusion}\label{sec:conclusion}
+
+\tf{} operationalizes the distinction between emitting statements and forming
+theory, as the propose-only Discovery Plane of a governed engine. This checkpoint
+delivers the task definition, operator library, architecture, benchmark design,
+and verification protocol, plus a frozen case-study corpus --- and, deliberately,
+\emph{no discovery claims}. The next step is to resolve B1--B8, freeze the
+protocol and manifests, and run the preregistered evaluation, reporting Verified
+Knowledge Gain (including null results) that regenerates from raw artifacts.
+
+%================================================================
+\appendix
+
+\section{Discovery-operator specifications (excerpt)}\label{app:ops}
+Four representative full specifications; the remaining nine follow the same
+seven-field schema in \texttt{operators/OPERATOR\_API.md}.
+
+\begin{description}
+\item[\op{COUNTEREXAMPLE\_FIRST}] \emph{in}: \otype{Conjecture}/\otype{Statement}.
+\emph{pre}: falsifiable, with a searchable model class. \emph{transform}: compile
+the negation to a search \emph{before} any proof budget. \emph{out}:
+\otype{Counterexample} (\state{EVIDENCE}) or a survived-search annotation.
+\emph{val}: exact-arithmetic re-check of the witness. \emph{fail}: search too
+large $\to$ bounded-search barrier note. \emph{cost}: search wall-clock $+$ calls.
+\item[\op{SYNTHESIZE\_DEFINITION}] \emph{in}: $\ge 2$
+\otype{Example}/\otype{Experiment}/\otype{Theorem} sharing structure.
+\emph{pre}: a retrievable repeated pattern. \emph{transform}: propose a concept
+compressing it; test statement/proof/retrieval improvement. \emph{out}:
+\otype{Definition} (\state{DRAFT}). \emph{val}: IR type-check $+$ non-collision.
+\emph{fail}: pure renaming $\to$ flagged non-novel. \emph{cost}: generation $+$
+compression measurement.
+\item[\op{MINIMAL\_MISSING\_LEMMA}] \emph{in}: gapped \otype{Proof} blueprint.
+\emph{pre}: localized gap. \emph{transform}: infer the weakest closing
+obligation. \emph{out}: \otype{Lemma} (\state{OPEN}) $+$ \texttt{requires} edge.
+\emph{val}: remaining steps type-check under the lemma. \emph{fail}: lemma
+$\equiv$ theorem $\to$ flagged. \emph{cost}: planner calls. (Bang: the thin-plank
+lemma.)
+\item[\op{BARRIER\_SEARCH}] \emph{in}: method family $+$ target bound. \emph{pre}:
+method formalizable as a bounded transformation. \emph{transform}: prove it
+cannot cross an obstruction. \emph{out}: \otype{Barrier}/\state{NO\_GO}
+(\state{EVIDENCE}). \emph{val}: exact/certified obstruction. \emph{fail}:
+heuristic only $\to$ \state{EVIDENCE}, not \state{NO\_GO}. (Bang: the normalizer
+obstruction.)
+\end{description}
+
+\section{Object types and epistemic states}\label{app:states}
+Object types (20, \mirador{}): \otype{Concept}, \otype{Definition},
+\otype{Construction}, \otype{Statement}, \otype{Question}, \otype{Conjecture},
+\otype{Lemma}, \otype{Theorem}, \otype{Example}, \otype{Counterexample},
+\otype{Reduction}, \otype{Equivalence}, \otype{Barrier}, \otype{Proof},
+\otype{Refutation}, \otype{Experiment}, \otype{Certificate}, \otype{Checker},
+\otype{Heuristic}, \otype{Translation}. Epistemic states (11): \state{DRAFT},
+\state{OPEN}, \state{EVIDENCE}, \state{CANDIDATE}, \state{REFUTED},
+\state{NO\_GO}, \state{FORMALIZED}, \state{AUDITED}, \state{PROMOTED},
+\state{SUSPECT}, \state{RETIRED}. \tf{} emits only \state{DRAFT}/\state{OPEN}/%
+\state{EVIDENCE}.
+
+\section{Bang corpus freeze (v0 draft)}\label{app:freeze}
+A read-only manifest of the frozen campaign was generated at
+\path{case_studies/bang/CORPUS_FREEZE.manifest.json}: 269 files,
+$\approx 32.9$\,MB, from the repository
+\path{maximilianolucius/bang-plank-affine-triangle} at commit
+\texttt{68d176cd}, with rolling manifest hash
+\texttt{sha256:2ef41dd2\dots}~\ev{evidenced: generated 2026-07-12}.
+\emph{Excluded}: the abandoned Euler--Jacobi drafts (\texttt{drafts/obsolete/}),
+an unrelated Hamilton--Jacobi note, and copyright-excluded reference PDFs.
+\emph{Poison-flagged} (frozen \emph{with} a warning, contamination control):
+an unretracted-but-unsound note and early refuted drafts. The file boundary and
+poison policy await PI sign-off before this becomes \texttt{bang-freeze-v0}
+(B-freeze).
+
+\begin{thebibliography}{99}
+\itemsep2pt
+
+\bibitem{Lenat77} D.~B.~Lenat, \emph{Automated theory formation in
+mathematics}, Proc. IJCAI-77 (1977), 833--842.
+
+\bibitem{Colton02} S.~Colton, \emph{Automated Theory Formation in Pure
+Mathematics}, Distinguished Dissertations, Springer, 2002.
+
+\bibitem{Interestingness25} \emph{Learning Interestingness in Automated
+Mathematical Theory Formation}, arXiv:2511.14778 (2025).
+
+\bibitem{Lenat76} D.~B.~Lenat, \emph{AM: an artificial intelligence approach to
+discovery in mathematics as heuristic search}, Ph.D. thesis, Stanford
+University, 1976.
+
+\bibitem{NewellSimon57} A.~Newell, J.~C.~Shaw, H.~A.~Simon, \emph{Empirical
+explorations of the Logic Theory Machine}, Proc. Western Joint Computer
+Conference (1957), 218--230.
+
+\bibitem{Bundy88} A.~Bundy, \emph{The use of explicit plans to guide inductive
+proofs}, Proc. CADE-9, LNCS \textbf{310}, Springer (1988), 111--120.
+
+\bibitem{McCune97} W.~McCune, \emph{Solution of the Robbins problem}, J.
+Automated Reasoning \textbf{19} (1997), 263--276.
+
+\bibitem{AppelHaken77} K.~Appel, W.~Haken, \emph{Every planar map is four
+colorable. Part I: Discharging}, Illinois J. Math. \textbf{21} (1977), 429--490.
+
+\bibitem{Gonthier08} G.~Gonthier, \emph{Formal proof---the four-color theorem},
+Notices Amer. Math. Soc. \textbf{55} (2008), 1382--1393.
+
+\bibitem{Hales17} T.~Hales et al., \emph{A formal proof of the Kepler
+conjecture}, Forum of Mathematics, Pi \textbf{5} (2017), e2.
+
+\bibitem{Heule16} M.~J.~H.~Heule, O.~Kullmann, V.~W.~Marek, \emph{Solving and
+verifying the Boolean Pythagorean triples problem via cube-and-conquer}, Proc.
+SAT 2016, LNCS \textbf{9710}, Springer (2016), 228--245.
+
+\bibitem{Yao23} S.~Yao et al., \emph{Tree of Thoughts: deliberate problem
+solving with large language models}, NeurIPS 36 (2023).
+
+\bibitem{Trinh24} T.~H.~Trinh, Y.~Wu, Q.~V.~Le, H.~He, T.~Luong, \emph{Solving
+olympiad geometry without human demonstrations}, Nature \textbf{625} (2024),
+476--482.
+
+\bibitem{RomeraParedes24} B.~Romera-Paredes et al., \emph{Mathematical
+discoveries from program search with large language models}, Nature \textbf{625}
+(2024), 468--475.
+
+\bibitem{AlphaEvolve25} Novikov, Balog, et~al.\ (Google DeepMind),
+\emph{AlphaEvolve: a coding agent for scientific and algorithmic discovery},
+Google DeepMind technical report (2025).
+
+\bibitem{Davies21} A.~Davies et al., \emph{Advancing mathematics by guiding
+human intuition with AI}, Nature \textbf{600} (2021), 70--74.
+
+\bibitem{Aletheia26} T.~Feng, T.~H.~Trinh, G.~Bingham, et al.\ (Google
+DeepMind), \emph{Towards Autonomous Mathematics Research} (Aletheia),
+arXiv:2602.10177 (2026).
+
+\bibitem{QED26} C.~An, Q.~Ye, M.~Pan, J.~Zhang, \emph{QED: an open-source
+multi-agent system for generating mathematical proofs on open problems},
+arXiv:2604.24021 (2026).
+
+\bibitem{RMA26} Z.~Zhao, B.~Yuan, J.~Choi, Y.~Chen, \emph{RMA: an agentic system
+for research-level mathematical problems}, arXiv:2605.22875 (2026).
+
+\bibitem{ProverAgent25} Baba, Liu, Kurita, Sannai, \emph{Prover Agent: an
+agent-based framework for formal mathematical proofs}, arXiv:2506.19923 (2025).
+
+\bibitem{LEAP26} Kung, Song, Hwang, et~al., \emph{LEAP: supercharging LLMs for
+formal mathematics with agentic frameworks}, arXiv:2606.03303 (2026).
+
+\bibitem{LeanSearch26} Gao, Sun, Jiang, et~al., \emph{LeanSearch v2: global
+premise retrieval for Lean~4 theorem proving}, arXiv:2605.13137 (2026).
+
+\bibitem{Auer02} P.~Auer, N.~Cesa-Bianchi, P.~Fischer, \emph{Finite-time
+analysis of the multiarmed bandit problem}, Machine Learning \textbf{47} (2002),
+235--256.
+
+\bibitem{Browne12} C.~Browne et al., \emph{A survey of Monte Carlo tree search
+methods}, IEEE Trans. Comput. Intell. AI in Games \textbf{4} (2012), 1--43.
+
+\bibitem{Bang51} T.~Bang, \emph{A solution of the ``plank problem''}, Proc.
+Amer. Math. Soc. \textbf{2} (1951), 990--993.
+
+\bibitem{Ball91} K.~Ball, \emph{The plank problem for symmetric bodies}, Invent.
+Math. \textbf{104} (1991), 535--543.
+
+\bibitem{Gardner88} R.~J.~Gardner, \emph{Relative width measures and the plank
+problem}, Pacific J. Math. \textbf{135} (1988), 299--312.
+
+\bibitem{BY26} A.~Bakaev, A.~Yehudayoff, \emph{A lower bound for the total
+relative width of planks covering a convex body}, arXiv:2602.20290 (2026).
+
+\bibitem{Lucius26} M.~Lucius et al., \emph{Transport and tiling bounds for the
+affine plank problem on the triangle}, manuscript (2026); repository
+\texttt{maximilianolucius/bang-plank-affine-triangle}.
+
+\bibitem{lucius2026engine} M.~Lucius, J.~Minich, \emph{The Bourbaki Engine: a
+governed discovery architecture for long-horizon autonomous mathematics},
+preprint (2026), Zenodo \texttt{10.5281/zenodo.21328015}.
+
+\bibitem{lucius2026mirador} M.~Lucius, \emph{MIRADOR: a typed, versioned
+intermediate representation for auditable mathematical knowledge and discovery},
+software and preprint (2026), Zenodo \texttt{10.5281/zenodo.21324524}.
+
+\bibitem{lucius2026proofcontext} M.~Lucius, \emph{ProofContext: dependency-aware
+retrieval of verifiable context for mathematical reasoning}, software and
+preprint (2026), Zenodo \texttt{10.5281/zenodo.21325288}.
+
+\bibitem{lucius2026congressbench} M.~Lucius, \emph{CongressBench: measuring the
+false-theorem-promotion rate of fresh-context mathematical review}, software and
+preprint (2026).
+
+\end{thebibliography}
+
+\end{document}

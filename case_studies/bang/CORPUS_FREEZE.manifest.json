@@ -1,0 +1,1373 @@
+{
+  "schema_version": "theoryforge-freeze/0.1-draft",
+  "status": "DRAFT_UNFROZEN",
+  "source_repo": "https://github.com/maximilianolucius/bang-plank-affine-triangle.git",
+  "git_commit": "68d176cd1e5d6cbb0e898611a8a512e81304a44c",
+  "n_files": 269,
+  "total_bytes": 32913293,
+  "manifest_hash": "sha256:2ef41dd291fce7267f775262c0fa0f87ed5fa2190ae081557210787a06be886a",
+  "exclusions": [
+    "drafts/obsolete",
+    "drafts/hamilton-jacobi",
+    "refs",
+    ".git",
+    "target",
+    "__pycache__",
+    "*.log",
+    "*.aux",
+    "*.out",
+    "*.blg",
+    "*.pyc"
+  ],
+  "poison_range_note": "notes/05..21 are early refuted 'victory' drafts (AUDITORIA_CLAUDE_30Jn.md)",
+  "note": "B-freeze is unresolved: the file boundary and poison policy require PI sign-off before this becomes bang-freeze-v0.",
+  "files": [
+    {
+      "path": "00-research-dossier.md",
+      "bytes": 16940,
+      "sha256": "67b33fc9b34dd58016a1b7593d0c943a973cd93d1957d4987028f1fc9d838862"
+    },
+    {
+      "path": "03-work-plan.md",
+      "bytes": 9240,
+      "sha256": "fe87d376f971cf22051e3eafdb294794c9e9fea8f55638c6071b24da228e0c3a"
+    },
+    {
+      "path": "AUDITORIA_CLAUDE_30Jn.md",
+      "bytes": 20362,
+      "sha256": "8db7f9c439aa505f06a9ca29d7d9f2963b73a150dd9711be43053225bd05cf39"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2960,
+      "sha256": "b8913efbb3c7e79ef2ec3569d05a6f3e69745da0afa56f3ed820f6bc6aa3bac7"
+    },
+    {
+      "path": "auditorias/00-ordenes-de-trabajo.md",
+      "bytes": 46204,
+      "sha256": "8c8dd0717ef3b45d1188331b670541c6c1b3661d957109c8034cfb85c2710735"
+    },
+    {
+      "path": "auditorias/39-rigidez-suficiencia-pivote.md",
+      "bytes": 10367,
+      "sha256": "2056ce567ac0ff827c47d1900487a163d954a3cf888ee113a3f60bdcfac3209a"
+    },
+    {
+      "path": "auditorias/40-ambrus-reduccion-verificada.md",
+      "bytes": 8077,
+      "sha256": "8e8c3d4afa32f409329b03c1e32dbec14c401d6795354b5faa4efe8cfa23cceb"
+    },
+    {
+      "path": "auditorias/41-ball-1991-analisis-recuperado.md",
+      "bytes": 2525,
+      "sha256": "617b984327355fb7338de20be3fbd6217004625f18e12f3373eb9a12692d4234"
+    },
+    {
+      "path": "auditorias/43-ejecucion-P1-P4.md",
+      "bytes": 11486,
+      "sha256": "37a791850dbe3e22b21a3d32d9b485d7f43bef6f7972840bc47aab4c394f9e0d"
+    },
+    {
+      "path": "auditorias/44-46-ronda2-cierre.md",
+      "bytes": 10208,
+      "sha256": "349ee5318e9f46debad6a9e8c330b21ea37af715f608a3007f34db4c88840218"
+    },
+    {
+      "path": "auditorias/47-ronda3-paper.md",
+      "bytes": 9271,
+      "sha256": "05d5422fb04c6e4df14b3f82924c712102d2519d622d679427f198ec0a5c2072"
+    },
+    {
+      "path": "auditorias/48-ronda4.md",
+      "bytes": 6449,
+      "sha256": "826a374b4e88be366cf219cced70912681733f340a930e616c37b3a7b89050e1"
+    },
+    {
+      "path": "auditorias/49-dictamen-dona-rosa-paper.md",
+      "bytes": 8161,
+      "sha256": "0e12964120ab2eeaebd8602c3c40c7ef776479d3ffa21a6ba18047df9ad55b9a"
+    },
+    {
+      "path": "auditorias/50-ronda5-cierre.md",
+      "bytes": 14082,
+      "sha256": "da67b8682752856557dd2b7e0d02a31e6890132784c2e5ecddf0f4956530a07a"
+    },
+    {
+      "path": "auditorias/51-ordenes-ronda7.md",
+      "bytes": 7775,
+      "sha256": "9ebe4071c1baa57baa99c590a27c665bc98af026a5d1087d543ccac8b1ee2934"
+    },
+    {
+      "path": "auditorias/52-ronda6-cierre.md",
+      "bytes": 12511,
+      "sha256": "a7dd3a3c433cccb9e0ade8b24f924b4df38cca0fc11fc68db497ace6831e5b99"
+    },
+    {
+      "path": "auditorias/53-ronda7-y-dona-rosa-pasada3.md",
+      "bytes": 15394,
+      "sha256": "05bb1fdc273d438a68b42ba4aa17a64c33ae3dd47658ceb29e84c1d1e6275abf"
+    },
+    {
+      "path": "auditorias/54-ronda8-cierre.md",
+      "bytes": 4816,
+      "sha256": "7198f7f8c5ef7d164aba7eb113a17f7fda9f5f66c65bb44b98da46f29aebdadf"
+    },
+    {
+      "path": "auditorias/55-dona-rosa-pasada4-y-decision-split.md",
+      "bytes": 12002,
+      "sha256": "ba51b5507bcfa3821092376791c77a71a3d144d0dd0aa33e0715bd338a5907b3"
+    },
+    {
+      "path": "auditorias/56-ordenes-ronda9.md",
+      "bytes": 13320,
+      "sha256": "d5303d2acc573dcfb26999f3dc37cc69613f881de2c21b012bf2c118184c6a3a"
+    },
+    {
+      "path": "auditorias/57-ronda9-cierre.md",
+      "bytes": 9775,
+      "sha256": "ab57efceeefb99a17719491b4d83bc7c970edba3ae7ae112953e34aba4076b14"
+    },
+    {
+      "path": "auditorias/58-ordenes-ronda10.md",
+      "bytes": 11252,
+      "sha256": "c35e9a60b54bf1f7fc159aaa54f347720bb18052c40ca1cfc87abfddb22547c9"
+    },
+    {
+      "path": "auditorias/59-ronda10-cierre.md",
+      "bytes": 10229,
+      "sha256": "b027df0400b8be52f40ad039d16374ff81bf8e45a164c1141c2ef5a5f297bde6"
+    },
+    {
+      "path": "auditorias/60-dictamen-rosa5-y-ordenes-ronda12.md",
+      "bytes": 10359,
+      "sha256": "b2d367bd9e6ddceef41694a2d89617b8df8e0f2dcded19a9d46c9937f1d151a1"
+    },
+    {
+      "path": "auditorias/61-ronda12-cierre.md",
+      "bytes": 8563,
+      "sha256": "5e1cb91cf3bae20880794fa6ac60c53ba67b2a1dd71fed0cdd4c1f2424f55d5f"
+    },
+    {
+      "path": "auditorias/62-ronda13-cierre.md",
+      "bytes": 9225,
+      "sha256": "36aa2d2de4c359a0b12c38428cd3884dc732b95e8e6f8668368b8663396857fd"
+    },
+    {
+      "path": "auditorias/63-ronda14-cierre-HITO.md",
+      "bytes": 8403,
+      "sha256": "c101aec715a092a75553e65694754a8381c1aee77d0cc2c4f1a9e5ed6e35d4cd"
+    },
+    {
+      "path": "auditorias/64-estandar-computer-assisted.md",
+      "bytes": 8718,
+      "sha256": "e2a6d52ab979ff164c75838becc3f758045455a16095042dd174214178fd1498"
+    },
+    {
+      "path": "auditorias/65-ronda15-consolidada.md",
+      "bytes": 7470,
+      "sha256": "338c27920b5e541c7692a87367e5b075ba998b04cc53e819d11a996cdfb6d4ff"
+    },
+    {
+      "path": "auditorias/66-ronda15-cierre.md",
+      "bytes": 5618,
+      "sha256": "3de3b9f9178377276c7fe436230efbf55c4a39695d98e7856467a31f2635363e"
+    },
+    {
+      "path": "auditorias/67-integracion-pasada7.md",
+      "bytes": 6490,
+      "sha256": "7f1ae5249b3887f065c3d12f7076e5ff5f0c25434a60ae25c74f5d24fc1ef0b6"
+    },
+    {
+      "path": "auditorias/68-auditoria-pasada7-VISTO-BUENO.md",
+      "bytes": 5511,
+      "sha256": "2af9bb58183f9fd29d3ac1cf09b002f3e28cf20435101809f5be10c53c5ce986"
+    },
+    {
+      "path": "auditorias/69-dictamen-rosa6-y-correcciones.md",
+      "bytes": 12204,
+      "sha256": "3b949c693bfecda2fec4cb7a346f13d0e282f4b8807866b72f97fbb50b60fafa"
+    },
+    {
+      "path": "auditorias/70-directiva-conclusions-discussion-aims.md",
+      "bytes": 11612,
+      "sha256": "7a65b5e1135606e5f03a706b075b8ba9cc998aaaf0a26c169564219fc96f334c"
+    },
+    {
+      "path": "auditorias/71-auditoria-discussion-conclusions.md",
+      "bytes": 6443,
+      "sha256": "bdc60877c7c396bdea4ba7150e9f93bc885cf539165c9d3767d54e8499d83830"
+    },
+    {
+      "path": "drafts/BUILD.md",
+      "bytes": 16146,
+      "sha256": "d59cb5bce36ba9aa5e42ba7d10983b40eb492de788c2b9dbdaa63e1bd8ae0a7e"
+    },
+    {
+      "path": "drafts/M1-working-notes.md",
+      "bytes": 24105,
+      "sha256": "e8e517496d5c59dece1dd1510dd57b4cfc4b7973089f3a21eeda33498b10c909"
+    },
+    {
+      "path": "drafts/affine-plank-triangle.pdf",
+      "bytes": 602265,
+      "sha256": "53cdef88892e81f19503d31233e63904363fa1b080a3a32bc367d9b7a7a31723"
+    },
+    {
+      "path": "drafts/affine-plank-triangle.tex",
+      "bytes": 172841,
+      "sha256": "c56ddf7f0ab6d7072d6c1abb88d6a1d4b247f6a762867d6405d9742ac43c0eb5"
+    },
+    {
+      "path": "drafts/aims-v1/AIMS_unsrt.bst",
+      "bytes": 39075,
+      "sha256": "632c4c5e4da6fd0e0a86d40b0efeb1c418e57f3ba6796cc966c9e8371cdf79a5"
+    },
+    {
+      "path": "drafts/aims-v1/affine-plank-triangle-aims-v1.pdf",
+      "bytes": 473151,
+      "sha256": "a06930d8b79dcb5c0453cddbbdc6a14c5a9424b4bdf79732977a73e86a2bd43f"
+    },
+    {
+      "path": "drafts/aims-v1/affine-plank-triangle-aims-v1.tex",
+      "bytes": 189346,
+      "sha256": "71300b8aa3ae3bcfaf4f3b1d41784615e5739c392f9fabcf081198742044cfba"
+    },
+    {
+      "path": "drafts/aims-v1/aims.cls",
+      "bytes": 14013,
+      "sha256": "d4f03d858cea45873ee678884c81282eacd5f447e35412c50d8bf57216056488"
+    },
+    {
+      "path": "drafts/aims-v1/figure.pdf",
+      "bytes": 23625,
+      "sha256": "43d719db18eefff25926d0ca7ec8995d5eb4a2b734eb56d9381dd85a873b222d"
+    },
+    {
+      "path": "drafts/aims-v1/logo.pdf",
+      "bytes": 57754,
+      "sha256": "8bee410d643b9e53a11fe7e8f4526e74b2d735db5f321ef975ca053a33ec08ba"
+    },
+    {
+      "path": "drafts/aims-v1/logobottom.pdf",
+      "bytes": 55258,
+      "sha256": "2a158e621ac0173eb726d03028198e8443b1dbfa139a78867d58698afa911ab9"
+    },
+    {
+      "path": "drafts/aims-v1/submission-source-aims-v1.zip",
+      "bytes": 641317,
+      "sha256": "d3365943f6f86aa7b35743fe8a28bfdaa77f99a5409c511def406af5248089fa"
+    },
+    {
+      "path": "drafts/aims-v1/supplementary-ancillary.zip",
+      "bytes": 751448,
+      "sha256": "f5caa8e061d606d27bbb2d10d16d0eac2f649376ac7de8d1fc8b018a058abbff"
+    },
+    {
+      "path": "drafts/aims-v1/template-orig/AIMS Math latex template-250317/AIMS Mathematics latex template/AIMS_unsrt.bst",
+      "bytes": 39075,
+      "sha256": "632c4c5e4da6fd0e0a86d40b0efeb1c418e57f3ba6796cc966c9e8371cdf79a5"
+    },
+    {
+      "path": "drafts/aims-v1/template-orig/AIMS Math latex template-250317/AIMS Mathematics latex template/Template-AIMS Mathematics.pdf",
+      "bytes": 196965,
+      "sha256": "21354f528f21ee748df7c6a510f2d42caee5a9680bae30691acd944604558885"
+    },
+    {
+      "path": "drafts/aims-v1/template-orig/AIMS Math latex template-250317/AIMS Mathematics latex template/Template-AIMS Mathematics.tex",
+      "bytes": 6451,
+      "sha256": "e92f30aa354b5be3ec8c83a58650210b548496f3ce3231ada093831ec4575856"
+    },
+    {
+      "path": "drafts/aims-v1/template-orig/AIMS Math latex template-250317/AIMS Mathematics latex template/aims.cls",
+      "bytes": 14013,
+      "sha256": "d4f03d858cea45873ee678884c81282eacd5f447e35412c50d8bf57216056488"
+    },
+    {
+      "path": "drafts/aims-v1/template-orig/AIMS Math latex template-250317/AIMS Mathematics latex template/figure.pdf",
+      "bytes": 23625,
+      "sha256": "43d719db18eefff25926d0ca7ec8995d5eb4a2b734eb56d9381dd85a873b222d"
+    },
+    {
+      "path": "drafts/aims-v1/template-orig/AIMS Math latex template-250317/AIMS Mathematics latex template/logo.pdf",
+      "bytes": 57754,
+      "sha256": "8bee410d643b9e53a11fe7e8f4526e74b2d735db5f321ef975ca053a33ec08ba"
+    },
+    {
+      "path": "drafts/aims-v1/template-orig/AIMS Math latex template-250317/AIMS Mathematics latex template/logobottom.pdf",
+      "bytes": 55258,
+      "sha256": "2a158e621ac0173eb726d03028198e8443b1dbfa139a78867d58698afa911ab9"
+    },
+    {
+      "path": "drafts/ancillary/README.md",
+      "bytes": 7613,
+      "sha256": "6e00b4e79846181d53c9b924470bde407e7ea91b9ff5533a9179bd70a9898085"
+    },
+    {
+      "path": "drafts/ancillary/bang_Nc_nogo_chord.py",
+      "bytes": 2004,
+      "sha256": "2ca8c36dacd10085d7ad9a0aacd18948c1f5f43ac6d1e6264d4a075c62fa3f5c"
+    },
+    {
+      "path": "drafts/ancillary/bb_certificate_check.py",
+      "bytes": 9379,
+      "sha256": "90a25ce8ea059abed4707b5314a164be40298b1fe9fe42394d56a1c69c48eb1b"
+    },
+    {
+      "path": "drafts/ancillary/c3_balanced_bb.py",
+      "bytes": 13601,
+      "sha256": "b2468aa9acc91f4fbeec9b58afed706d3b865e7f0e49ecfa2c3804eae382f4cb"
+    },
+    {
+      "path": "drafts/ancillary/c3_extreme_regime.py",
+      "bytes": 11366,
+      "sha256": "cbc4c2f5ad7d0a68858802e0688feaee073728403d764677ba55e5c17fa70621"
+    },
+    {
+      "path": "drafts/ancillary/c3_sandwich_certificate.txt",
+      "bytes": 12062803,
+      "sha256": "ead66ff2cfd547f8e2acd7c7bf5cce67d114a0aa1146559fc5b065028de6b86c"
+    },
+    {
+      "path": "drafts/ancillary/covering_constant.py",
+      "bytes": 13464,
+      "sha256": "857221b7bd04d28152aade5d57d5d07e24e64df2b1c9d3cbaaa4761fdc366656"
+    },
+    {
+      "path": "drafts/ancillary/cyclic_family_tight_rigidity.py",
+      "bytes": 5083,
+      "sha256": "bacf681b55a54dc42fb3481c534c6083dc66d29d9d3ff28c4c42e38815fc8d09"
+    },
+    {
+      "path": "drafts/ancillary/defect_duality.py",
+      "bytes": 15933,
+      "sha256": "e74ed32aca9e5e85e661098c263ab305659efb8f78bcd2fd8122b0af25803bdc"
+    },
+    {
+      "path": "drafts/ancillary/delta_eq_deltac.py",
+      "bytes": 6870,
+      "sha256": "4d1d6239a42a95c441d663a3b2dc0a5e3745cecebce303ade5d661507ff1ef76"
+    },
+    {
+      "path": "drafts/ancillary/dual_certificates.py",
+      "bytes": 8872,
+      "sha256": "86c1e32e3e2906bbd5906412b8a0063305c0d6b281c97396e92d19969b0b2932"
+    },
+    {
+      "path": "drafts/ancillary/gardner_third_marginal.py",
+      "bytes": 5030,
+      "sha256": "71db202130bd0d3d59164e2aa27d3844f17733f4a384fbfe5a9edce5f5fa3821"
+    },
+    {
+      "path": "drafts/ancillary/median_edgetiling_types_crosscheck.py",
+      "bytes": 1906,
+      "sha256": "c2d5ba38ba94473b5d0c26f13e1f89344ccca72d511a5dad113d3d1cc329a71c"
+    },
+    {
+      "path": "drafts/ancillary/median_edgetilings_independent.py",
+      "bytes": 2164,
+      "sha256": "34fe23638687bbfb5dbc0583368fc74cc3d4646f46b80dc442d0ee39bf44c67c"
+    },
+    {
+      "path": "drafts/ancillary/median_rigidity_centroid.py",
+      "bytes": 587,
+      "sha256": "b23c1ecbaf27b7daf81dfb123e37d62b17aece21c3f287654b0fe510b606dd16"
+    },
+    {
+      "path": "drafts/ancillary/median_rigidity_enumeration.py",
+      "bytes": 4291,
+      "sha256": "c5de2659bf2d4de10740437ccad41022642e44fc226c074d8a14dcd665684370"
+    },
+    {
+      "path": "drafts/ancillary/r13_2_bounded.py",
+      "bytes": 4283,
+      "sha256": "52629a3e888c02b006b9729430a66c3db50154b7073818227569ac96ad7dfb89"
+    },
+    {
+      "path": "drafts/ancillary/r15_equality.py",
+      "bytes": 6139,
+      "sha256": "af4a0ff9949d569df665293dc3fc7483fbc1fd9302cbd74fe60a2ae41ca90995"
+    },
+    {
+      "path": "drafts/ancillary/role_patterns_classification.py",
+      "bytes": 2958,
+      "sha256": "23ef00473aacea331d8ddc667dc9a09a7d90ea33f6c24285964a6ecb8e4e6cae"
+    },
+    {
+      "path": "drafts/ancillary/simplex3_weighted_skeleton.py",
+      "bytes": 10123,
+      "sha256": "1f5e339e5790ef52af36825d246ee6e50e22bf6e58d88293b7935fa32ebe0f24"
+    },
+    {
+      "path": "drafts/ancillary/supD_dual_hunt.py",
+      "bytes": 15006,
+      "sha256": "dba45cc2aec88243d684fcbfe54befba5848c5e21e790c448e904467ec56566a"
+    },
+    {
+      "path": "drafts/ancillary/supD_hunt_phase2.py",
+      "bytes": 6555,
+      "sha256": "f28249b84b76360f22a45d83069857dceffdc29e5e871019d8ce53ee983b54d6"
+    },
+    {
+      "path": "drafts/ancillary/tilt_local_max.py",
+      "bytes": 4233,
+      "sha256": "2caff4d510e87ef5fed9110e01a57bf7cb5ed1d856fec4f20ea9333d151b4cc6"
+    },
+    {
+      "path": "drafts/ancillary/transport_defect.py",
+      "bytes": 16257,
+      "sha256": "61cea7b5f9f234391488f51faa3e695cec628cc0757f8ca17e968095b7dfd9ca"
+    },
+    {
+      "path": "drafts/entregas/affine-plank-triangle-2026-07-02-pasada3.pdf",
+      "bytes": 360978,
+      "sha256": "c3da90320b735858c136b505c00815e277138a0bec3e67e6e1700a04ecace8b1"
+    },
+    {
+      "path": "drafts/entregas/affine-plank-triangle-2026-07-02-pasada3.tex",
+      "bytes": 47175,
+      "sha256": "98cf980df39cdec47d0ec4459f577361085e5eecb9eb93c24071147a5364f18f"
+    },
+    {
+      "path": "drafts/entregas/affine-plank-triangle-2026-07-02-pasada4.pdf",
+      "bytes": 434904,
+      "sha256": "5668d3e58cffe8e0de4fb833068a46535d977e99e9d1ae856f009d469a1f632f"
+    },
+    {
+      "path": "drafts/entregas/affine-plank-triangle-2026-07-02-pasada4.tex",
+      "bytes": 73075,
+      "sha256": "fc33882a991cee6c124d178d492354b7f5e8841c301f0be6db52ba4b562edf4f"
+    },
+    {
+      "path": "drafts/entregas/affine-plank-triangle-2026-07-03-pasada5.pdf",
+      "bytes": 499805,
+      "sha256": "c58124d5c594ff32b9e693189b02db64ff19cc79e36132441a25fe8e622a1967"
+    },
+    {
+      "path": "drafts/entregas/affine-plank-triangle-2026-07-03-pasada5.tex",
+      "bytes": 106381,
+      "sha256": "eb781e32b8c77674ff43a08703797288d9925a2381e51f4cbe885560a6a54035"
+    },
+    {
+      "path": "drafts/entregas/affine-plank-triangle-2026-07-03-pasada6.pdf",
+      "bytes": 554786,
+      "sha256": "62670f21828a9f3f6f25a7e4a9d4f7ee7a3292c23c27a3ac1389140ef40ddc00"
+    },
+    {
+      "path": "drafts/entregas/affine-plank-triangle-2026-07-03-pasada6.tex",
+      "bytes": 153002,
+      "sha256": "9a15de0e1107c6a34dd312acc79943615044f4805152d67de3b0d4a8b3305a22"
+    },
+    {
+      "path": "drafts/entregas/affine-plank-triangle-2026-07-03-pasada7.pdf",
+      "bytes": 588764,
+      "sha256": "51623493a51f1c984c116a1c4c74043e84fa2679cf77ef6da6e0185ab3cbbf7c"
+    },
+    {
+      "path": "drafts/entregas/affine-plank-triangle-2026-07-03-pasada7.tex",
+      "bytes": 167392,
+      "sha256": "fd6e5ce00dab8aa10088fec5f7dd56536579599eb4e701b6e656fce726c037a7"
+    },
+    {
+      "path": "drafts/entregas/affine-plank-triangle-2026-07-03-pasada8.pdf",
+      "bytes": 595764,
+      "sha256": "50f7389ad73c82a0cc7b0c6358e05e868249328339a356bd926884c31eefce06"
+    },
+    {
+      "path": "drafts/entregas/affine-plank-triangle-2026-07-03-pasada8.tex",
+      "bytes": 171939,
+      "sha256": "2185232b7c72651f34242f5a8b34661fecde5d7002459ed1410084a5331f7913"
+    },
+    {
+      "path": "experiments/audit_algebra.py",
+      "bytes": 3285,
+      "sha256": "48139d6dbb63b4ac830f7fa04766756c8a227f5c2ffff6446712926f469ac0f7"
+    },
+    {
+      "path": "experiments/audit_algebra_2.py",
+      "bytes": 2108,
+      "sha256": "b2a67709a7aef70f355342c95f334886950c9615f5319cc3d239641d6b252f45"
+    },
+    {
+      "path": "experiments/audit_entropy.py",
+      "bytes": 3982,
+      "sha256": "8cfede5a95a2bcaf59ca7ab8dc6bab30bc0c45a85739a3762fa1a2b7e5678175"
+    },
+    {
+      "path": "experiments/audit_helly.py",
+      "bytes": 3150,
+      "sha256": "cef1fa2c3454d5b017f23218788999ccefe1c2e7c5ea878963daa169cdf971d7"
+    },
+    {
+      "path": "experiments/audit_kkt_contact.py",
+      "bytes": 3046,
+      "sha256": "8d4da90a114c3d399825c2f0cbb9ca3f3085b7d172beb3697134567c40e81203"
+    },
+    {
+      "path": "experiments/audit_support.py",
+      "bytes": 2552,
+      "sha256": "832976a14dc27fdcfcf276674f3d6cd137abc034d83e56de045587d323c0a5f4"
+    },
+    {
+      "path": "experiments/audit_zonotope.py",
+      "bytes": 2562,
+      "sha256": "2b144123f2f48cdc3f9d4fbe682c6e2ff4f043576ac83e034d6e1cc2816b71a6"
+    },
+    {
+      "path": "experiments/bang_Nc_nogo_chord.py",
+      "bytes": 2004,
+      "sha256": "2ca8c36dacd10085d7ad9a0aacd18948c1f5f43ac6d1e6264d4a075c62fa3f5c"
+    },
+    {
+      "path": "experiments/bb_certificate_check.py",
+      "bytes": 9379,
+      "sha256": "90a25ce8ea059abed4707b5314a164be40298b1fe9fe42394d56a1c69c48eb1b"
+    },
+    {
+      "path": "experiments/c3_balanced_bb.py",
+      "bytes": 13601,
+      "sha256": "b2468aa9acc91f4fbeec9b58afed706d3b865e7f0e49ecfa2c3804eae382f4cb"
+    },
+    {
+      "path": "experiments/c3_extreme_regime.py",
+      "bytes": 11366,
+      "sha256": "cbc4c2f5ad7d0a68858802e0688feaee073728403d764677ba55e5c17fa70621"
+    },
+    {
+      "path": "experiments/c3_sandwich_certificate.txt",
+      "bytes": 12062803,
+      "sha256": "ead66ff2cfd547f8e2acd7c7bf5cce67d114a0aa1146559fc5b065028de6b86c"
+    },
+    {
+      "path": "experiments/concurrence_measure_hunt.py",
+      "bytes": 2962,
+      "sha256": "310635911e4b16cd6573b39b469e65b9d28553535d9df82f66588e3707bcdea8"
+    },
+    {
+      "path": "experiments/concurrent_nonmedian_triple.py",
+      "bytes": 1272,
+      "sha256": "414610b517d2df469bdc7fec835379934970a07d1bdfddba6597a8cda5a72fb5"
+    },
+    {
+      "path": "experiments/concurrent_perimeter_densities.py",
+      "bytes": 2607,
+      "sha256": "56099444b6c9fc6bcec9267b40f7618807cfe4b149fadd9dde4a1b16129b3810"
+    },
+    {
+      "path": "experiments/covering_constant.py",
+      "bytes": 13464,
+      "sha256": "857221b7bd04d28152aade5d57d5d07e24e64df2b1c9d3cbaaa4761fdc366656"
+    },
+    {
+      "path": "experiments/cyclic_family_tight_rigidity.py",
+      "bytes": 5083,
+      "sha256": "bacf681b55a54dc42fb3481c534c6083dc66d29d9d3ff28c4c42e38815fc8d09"
+    },
+    {
+      "path": "experiments/defect_duality.py",
+      "bytes": 15933,
+      "sha256": "e74ed32aca9e5e85e661098c263ab305659efb8f78bcd2fd8122b0af25803bdc"
+    },
+    {
+      "path": "experiments/delta_eq_deltac.py",
+      "bytes": 6870,
+      "sha256": "4d1d6239a42a95c441d663a3b2dc0a5e3745cecebce303ade5d661507ff1ef76"
+    },
+    {
+      "path": "experiments/dual_certificates.py",
+      "bytes": 8872,
+      "sha256": "86c1e32e3e2906bbd5906412b8a0063305c0d6b281c97396e92d19969b0b2932"
+    },
+    {
+      "path": "experiments/exp_bang3_edges.py",
+      "bytes": 4588,
+      "sha256": "e0a8e31ac56d27b3aff3f9f04259ef41dc9ee20928684289f6b7988b8cdfc360"
+    },
+    {
+      "path": "experiments/exp_bang3_epssweep.py",
+      "bytes": 1444,
+      "sha256": "94f343167656464739eec5e8e7dc3fced921d063225f6394e2519042575dd72b"
+    },
+    {
+      "path": "experiments/exp_bang3_essential.py",
+      "bytes": 4646,
+      "sha256": "1371a5731b5be6f9dbb31749da73e5c58b6d88e8d72258a2318aacff66d16b70"
+    },
+    {
+      "path": "experiments/exp_bang3_general.py",
+      "bytes": 5193,
+      "sha256": "a000816d9c49f3eedd3b25ef583cff9c2157dcb7f466e4cc4ea2a1238a6533e3"
+    },
+    {
+      "path": "experiments/exp_ell_verify.py",
+      "bytes": 1943,
+      "sha256": "d12903ee56ac5c954f0c0547297e356b690eb9c4d2420cb50b7079b53d2966f9"
+    },
+    {
+      "path": "experiments/exp_w2_C.py",
+      "bytes": 4135,
+      "sha256": "b7568cdbda777a7a5e02c54680721d5e7950d11948e26b411d1171cd21339c8d"
+    },
+    {
+      "path": "experiments/exp_w2_delta.py",
+      "bytes": 4989,
+      "sha256": "1505c4d3a2e6df925fb2463bb6ca9b6825234a08a83435f32caefbe6ea00c179"
+    },
+    {
+      "path": "experiments/exp_w2_locus.py",
+      "bytes": 2437,
+      "sha256": "81f84b1fc2c1471362acb3ca43b6e374ab621d90769b2dedd36a4abecdbc9d50"
+    },
+    {
+      "path": "experiments/exp_w2_search.py",
+      "bytes": 3838,
+      "sha256": "86d86943afad6f8c36784156505f185f3df600202b02d5d3323cac4a7c6ab37e"
+    },
+    {
+      "path": "experiments/gardner_third_marginal.py",
+      "bytes": 5030,
+      "sha256": "71db202130bd0d3d59164e2aa27d3844f17733f4a384fbfe5a9edce5f5fa3821"
+    },
+    {
+      "path": "experiments/m1_check.py",
+      "bytes": 6799,
+      "sha256": "71ff89204aa9bc6909516d95661d678937fefb593e21567795d07902864e4d04"
+    },
+    {
+      "path": "experiments/m1_homog.py",
+      "bytes": 4852,
+      "sha256": "5ccd571afe6dc4e7fa73361c1e84a8be675860ec990bb6df2a190df9f3bb7769"
+    },
+    {
+      "path": "experiments/m2_triangle.py",
+      "bytes": 5611,
+      "sha256": "85edbf9489d9cf00ac4ca6328a9ebbeda91d7785ca928c26ac1909e30a2c6100"
+    },
+    {
+      "path": "experiments/m4_facet_tilted.py",
+      "bytes": 5306,
+      "sha256": "c14f244e722456293926101cee89e951f63f7690db19ab21c98946606e54e456"
+    },
+    {
+      "path": "experiments/m4_hunter_extension.py",
+      "bytes": 9614,
+      "sha256": "f1064f6c0f4c17cbceeb48042823fdc06aab64f8f1ca8a946db1b97d2670e06c"
+    },
+    {
+      "path": "experiments/median_edgetiling_types_crosscheck.py",
+      "bytes": 1906,
+      "sha256": "c2d5ba38ba94473b5d0c26f13e1f89344ccca72d511a5dad113d3d1cc329a71c"
+    },
+    {
+      "path": "experiments/median_edgetilings_independent.py",
+      "bytes": 2164,
+      "sha256": "34fe23638687bbfb5dbc0583368fc74cc3d4646f46b80dc442d0ee39bf44c67c"
+    },
+    {
+      "path": "experiments/median_generic_linsolve.py",
+      "bytes": 640,
+      "sha256": "ca99ed346dbb2f24a4863c448f412433d9d40e70a22b2d0d46bb63c117779ac8"
+    },
+    {
+      "path": "experiments/median_rigidity_centroid.py",
+      "bytes": 587,
+      "sha256": "b23c1ecbaf27b7daf81dfb123e37d62b17aece21c3f287654b0fe510b606dd16"
+    },
+    {
+      "path": "experiments/median_rigidity_enumeration.py",
+      "bytes": 4291,
+      "sha256": "c5de2659bf2d4de10740437ccad41022642e44fc226c074d8a14dcd665684370"
+    },
+    {
+      "path": "experiments/median_tiling_gridsearch.py",
+      "bytes": 1142,
+      "sha256": "5c1e75d4e928a6ef14ced6686f3ccdbad867348446527f990c1d44a7a17c069f"
+    },
+    {
+      "path": "experiments/prop1_algebra.py",
+      "bytes": 2895,
+      "sha256": "4b27ddb86332699f37cb909d161e96ecf67c7d9f9b6f9dd6cfa43cd9b019597a"
+    },
+    {
+      "path": "experiments/prop1_homogenized.py",
+      "bytes": 2745,
+      "sha256": "9c50f4e848f9cee8ff14c89120b72eeef831b31f625a503c644c20cdf2eea6b7"
+    },
+    {
+      "path": "experiments/prop1_toric.py",
+      "bytes": 2116,
+      "sha256": "58904b472899ace0a7557a1d619b6cbeaf021fc86d4398a66bfab747baaba4b6"
+    },
+    {
+      "path": "experiments/prop1_toric_residue.py",
+      "bytes": 1739,
+      "sha256": "bb6042ef1cac7092d1b5d604d0fc5bd2bff81e1d6e1a7e5ae303bd967fd70641"
+    },
+    {
+      "path": "experiments/prop2_kkm.py",
+      "bytes": 2136,
+      "sha256": "2066793ab1cfd8fca65f6285173a7e1a3279fcae0059fe0cd89251c562024dd8"
+    },
+    {
+      "path": "experiments/prop2_rust/.gitignore",
+      "bytes": 8,
+      "sha256": "44c92e3a70ad3307b7056871c2bdb096d8bfa9373f5bf06a79bb6324a20ff2fb"
+    },
+    {
+      "path": "experiments/prop2_rust/Cargo.lock",
+      "bytes": 2355,
+      "sha256": "47571e0ad60ab3ccff1ea54b02dd5c062d6df8b3ae3fe347a4afd70b2a540616"
+    },
+    {
+      "path": "experiments/prop2_rust/Cargo.toml",
+      "bytes": 118,
+      "sha256": "66e6b96a2792947777b4d1f0c428ac2d9e4c80b7f9b8a427096980956bcb6919"
+    },
+    {
+      "path": "experiments/prop2_rust/src/main.rs",
+      "bytes": 4497,
+      "sha256": "967f7b53f6454921d69553663beea6bc17ca2cc038704b3afb4c0a0cf9c70538"
+    },
+    {
+      "path": "experiments/prop2_topology.py",
+      "bytes": 1150,
+      "sha256": "c2614d69e4497a897d6dcce6ddb6588dff72ae16e0df227696e2c719a202c6be"
+    },
+    {
+      "path": "experiments/prop3_flow.py",
+      "bytes": 2339,
+      "sha256": "dc660edf714b5373a7380273e6b8676acc9b35d026a1366ecb7356ae0ceaecdf"
+    },
+    {
+      "path": "experiments/prop4_helly.py",
+      "bytes": 1994,
+      "sha256": "dae3d1258d0a18fb09015c2b5e646fca8a704c1814f7a6fdbb9b2e183493c022"
+    },
+    {
+      "path": "experiments/prop5_entropy.py",
+      "bytes": 3499,
+      "sha256": "de3dfe0adf0151e3376c2d6574ac8388c94c9d05ff28700ee8b17574cb671503"
+    },
+    {
+      "path": "experiments/prop5_signed_measure_lp.py",
+      "bytes": 3482,
+      "sha256": "3f3422250e8b1f2a2126a1497dcfd0a044a68d09822d22558e1f69cfd6834cd6"
+    },
+    {
+      "path": "experiments/prop6_hyperplane.py",
+      "bytes": 3162,
+      "sha256": "5eb58b023a92fabb5b0d091aa225a1c92489250b47e8ccb7b73b08d028bb7875"
+    },
+    {
+      "path": "experiments/prop6_rational_barrier.py",
+      "bytes": 2332,
+      "sha256": "3b0c36c1721bc7464cac904ed0b95915355cb663ff24848049adeb13516cf601"
+    },
+    {
+      "path": "experiments/prop6_symmetrization.py",
+      "bytes": 3035,
+      "sha256": "a82cc04ffdb43bc56bf78c5125a7eccd3580e18a875065b49eee3fc114275133"
+    },
+    {
+      "path": "experiments/prop6_zonotope.py",
+      "bytes": 2919,
+      "sha256": "55fbf5be549b6dd7ba17a9f63256bd12a35fe1268f6fe6a5b64e8476df5ba19c"
+    },
+    {
+      "path": "experiments/prop7_sphere_pullback.py",
+      "bytes": 2010,
+      "sha256": "78963610756575c8156454641d550e012f7a49832375ab305c58be7672c9384b"
+    },
+    {
+      "path": "experiments/prop8_infimal_convolution.py",
+      "bytes": 2218,
+      "sha256": "ba8067f83edc501356f46ec66a3d4b42ac6d19820e55467d0b781bb1c8bcb14d"
+    },
+    {
+      "path": "experiments/r13_2_bounded.py",
+      "bytes": 4283,
+      "sha256": "52629a3e888c02b006b9729430a66c3db50154b7073818227569ac96ad7dfb89"
+    },
+    {
+      "path": "experiments/r15_equality.py",
+      "bytes": 6139,
+      "sha256": "af4a0ff9949d569df665293dc3fc7483fbc1fd9302cbd74fe60a2ae41ca90995"
+    },
+    {
+      "path": "experiments/role_patterns_classification.py",
+      "bytes": 2958,
+      "sha256": "23ef00473aacea331d8ddc667dc9a09a7d90ea33f6c24285964a6ecb8e4e6cae"
+    },
+    {
+      "path": "experiments/run_remote.py",
+      "bytes": 5312,
+      "sha256": "8721a8f1a072387330ae8a1bce5dc4b21383e17fcd30a5c4b56f2a2d06be616f"
+    },
+    {
+      "path": "experiments/simplex3_weighted_skeleton.py",
+      "bytes": 10123,
+      "sha256": "1f5e339e5790ef52af36825d246ee6e50e22bf6e58d88293b7935fa32ebe0f24"
+    },
+    {
+      "path": "experiments/simplex_medians_LP.py",
+      "bytes": 1373,
+      "sha256": "96c42c965452453eadea27b62bfe589e87a8a836119dc16784ae58f0fd8d9619"
+    },
+    {
+      "path": "experiments/simplex_medians_explore.py",
+      "bytes": 1672,
+      "sha256": "8b77bad4c89ec2cecb8703247af671978224ff3ca5bd7a3200604ccb6b61d438"
+    },
+    {
+      "path": "experiments/supD_dual_hunt.py",
+      "bytes": 15006,
+      "sha256": "dba45cc2aec88243d684fcbfe54befba5848c5e21e790c448e904467ec56566a"
+    },
+    {
+      "path": "experiments/supD_hunt_phase2.py",
+      "bytes": 6555,
+      "sha256": "f28249b84b76360f22a45d83069857dceffdc29e5e871019d8ce53ee983b54d6"
+    },
+    {
+      "path": "experiments/tilt_local_max.py",
+      "bytes": 4233,
+      "sha256": "2caff4d510e87ef5fed9110e01a57bf7cb5ed1d856fec4f20ea9333d151b4cc6"
+    },
+    {
+      "path": "experiments/transport_defect.py",
+      "bytes": 16257,
+      "sha256": "61cea7b5f9f234391488f51faa3e695cec628cc0757f8ca17e968095b7dfd9ca"
+    },
+    {
+      "path": "experiments/weighted_perimeter_theorem.py",
+      "bytes": 1847,
+      "sha256": "8740c9ba429a3957623e41ba42ec5e6bcd0ec48926f61250f1003c9c12fb3e6b"
+    },
+    {
+      "path": "instrucciones-modificaciones-paper-aims.md",
+      "bytes": 28388,
+      "sha256": "d8c889aceedb558d37ab1cd532cf6d72769f80b5c3f040b161579b015ef1a86f"
+    },
+    {
+      "path": "kimi/PROMPT_INICIADOR.md",
+      "bytes": 9075,
+      "sha256": "45f1d69b19b44981ed2a156bf1ee476c1e754b8542f6650c9cecfce3c4e851de"
+    },
+    {
+      "path": "kimi/README.md",
+      "bytes": 4666,
+      "sha256": "850779b1a7bb144896032a0689a4fecfc3874c39193bdec4cae986c3783aab27"
+    },
+    {
+      "path": "kimi/config.json",
+      "bytes": 364,
+      "sha256": "4ed934a0499499e759b517496ea92aaaae444e386c298074aca551db2d819e27"
+    },
+    {
+      "path": "kimi/mailbox/investigador_response.md",
+      "bytes": 20100,
+      "sha256": "ba19ee4985045e074f981e84c6f10c3391e77979daf6e38b8c65a3537a072855"
+    },
+    {
+      "path": "kimi/mailbox/state.json",
+      "bytes": 293,
+      "sha256": "22234de18754493f9436307d8e7d53d05bd3d6f771c2d05028d1124dc4e2727d"
+    },
+    {
+      "path": "kimi/orchestrator.py",
+      "bytes": 9974,
+      "sha256": "12f1b017c936208e2492bbea1d91f9a29a4da0df84b1edf6bff66a96fea77986"
+    },
+    {
+      "path": "kimi/paper/draft.md",
+      "bytes": 20100,
+      "sha256": "ba19ee4985045e074f981e84c6f10c3391e77979daf6e38b8c65a3537a072855"
+    },
+    {
+      "path": "kimi/roles/investigador.md",
+      "bytes": 780,
+      "sha256": "0782804a753db22b6a8c0ae6f15e4ae8ac56c3b5ef26409af7e465fb186dc958"
+    },
+    {
+      "path": "kimi/roles/jefe_research.md",
+      "bytes": 960,
+      "sha256": "f264ce884eaea995345d096ffeda382d83b8aa5dd6a88dc747b35924ea6fc832"
+    },
+    {
+      "path": "notes/01-deep-research-state-of-the-art.md",
+      "bytes": 11592,
+      "sha256": "e87fb614a2557dcb8f2b53e9a78636c04d5fc65f763a662866fd9f6c722d233a"
+    },
+    {
+      "path": "notes/02-gaps-and-milestones.md",
+      "bytes": 5126,
+      "sha256": "6e269578c761cc9ded529a9f76d146547743acafc600fabb2371207eb20d71d7"
+    },
+    {
+      "path": "notes/04-m0-findings.md",
+      "bytes": 17036,
+      "sha256": "f54268705f78f77b4a563c27ab2078661cdf1d68932a869a4c5ade6337676b60"
+    },
+    {
+      "path": "notes/05-M2-setup.md",
+      "bytes": 8916,
+      "sha256": "5f8d5ab8dd9ecd4f67aecb2840b0f9bc72f8442ea481bdf51dc26736d4d5075a"
+    },
+    {
+      "path": "notes/06-toric-EJ-findings.md",
+      "bytes": 8357,
+      "sha256": "878cc2b5a24d743af61bcab798f80072bdcf31fd47fa7d5c397c9164a9d57847"
+    },
+    {
+      "path": "notes/07-elegant-measure-plan.md",
+      "bytes": 3895,
+      "sha256": "54978456b456bc4f08f6d9c3271ef9d35e2db71998a63740a13979885dacc525"
+    },
+    {
+      "path": "notes/08-the-1-over-d-theorem.md",
+      "bytes": 3477,
+      "sha256": "0557eea7d6557eb2763a9dafab10c0f7afddc9125024e90419bd46e42a2463a9"
+    },
+    {
+      "path": "notes/09-fibonacci-bootstrap.md",
+      "bytes": 5471,
+      "sha256": "964cc6a0bb9635d7a1d012171466615a57c44c4c24a0f991b27145d6f6a06c72",
+      "poison_flag": "unretracted but mathematically UNSOUND"
+    },
+    {
+      "path": "notes/10-vector-reduction.md",
+      "bytes": 2870,
+      "sha256": "d84da804789c57022903aad36b7552f8542554d9c0db57042fdbd1a9739bf805"
+    },
+    {
+      "path": "notes/11-bang-lemma-formalization.md",
+      "bytes": 4037,
+      "sha256": "f020839c55cccb823034fb92f6072df557bde1e4e03b5e76fdeb60f15ad0d644"
+    },
+    {
+      "path": "notes/12-two-direction-theorem.md",
+      "bytes": 3467,
+      "sha256": "949d050b5026a5f77843e9d2348211ed96e2fd50bbf9605c23fe47db0320f075"
+    },
+    {
+      "path": "notes/13-m4-wall-attack-plan.md",
+      "bytes": 6091,
+      "sha256": "dbd1b27e2759d3d6b6a2ec6571067bcd05cfb31e6aab46e1e9966a91a9fa305b"
+    },
+    {
+      "path": "notes/14-topological-lemma-prop2.md",
+      "bytes": 4391,
+      "sha256": "7c62e7cf73fff0f13027dff7668fb43118cce0d58f3f133a39f22e0cbf7932d7"
+    },
+    {
+      "path": "notes/15-algebraic-homogenization-prop1.md",
+      "bytes": 2315,
+      "sha256": "9dd062142303588cd53a635f3e839bc362b278a2151be6d4ba44d8016cd7f270"
+    },
+    {
+      "path": "notes/16-dual-victory-synthesis.md",
+      "bytes": 1388,
+      "sha256": "7d7392c0abe29ec78f98169e6a873eacf5d30e6f321c57a2ef41718302cbc347"
+    },
+    {
+      "path": "notes/17-semialgebraic-bruteforce-m4.md",
+      "bytes": 4302,
+      "sha256": "ac9f5c99284a511ce9962e695c533b2fc8a9eb421f7bb7ecfdf168a5a7aecf5b"
+    },
+    {
+      "path": "notes/18-helly-convex-geometry-prop4.md",
+      "bytes": 3081,
+      "sha256": "8abcf2c22fba38c0cbf39b6dd71bb930eec89b9f67ec753d89231bb368ee3e47"
+    },
+    {
+      "path": "notes/19-information-theory-entropy-prop5.md",
+      "bytes": 2429,
+      "sha256": "235aee03c472d3e9988e752f0576add40783467b83d97a1534d2a1fabe2ddb43"
+    },
+    {
+      "path": "notes/20-zonotope-minkowski-prop6.md",
+      "bytes": 4587,
+      "sha256": "4f0281a9c61345f645403e5c8633a6fc2a73426f03cd88856c08180ce348234c"
+    },
+    {
+      "path": "notes/21-kkt-geometric-rigidity-prop7.md",
+      "bytes": 4226,
+      "sha256": "d33d932ba9de12cb9956eb024f113ae2d7e1ad481c904a1475873b6112b3755d"
+    },
+    {
+      "path": "notes/22-audit-surviving-props.md",
+      "bytes": 4197,
+      "sha256": "9744871c9fea7f9a165ec1c6f2d9156ad1fad4bf5c0696419a55666397421556"
+    },
+    {
+      "path": "notes/23-firm-knowledge-rescued.md",
+      "bytes": 5966,
+      "sha256": "3c32f08b75223cc32e9b40d729431c64f03109ace59f21f321039a9e6b8f6e4e"
+    },
+    {
+      "path": "notes/24-m4-research-deliverable.md",
+      "bytes": 13923,
+      "sha256": "300aab33dd83b226b05eb1b2809eb1c348f4127cc292344bd738fa8e1667e128"
+    },
+    {
+      "path": "notes/25-theorem-3plus1-symmetric.md",
+      "bytes": 3293,
+      "sha256": "487309639d1d22de2b0d4a3669a8b4970cae0c906d6a0b07c05771d50771251b"
+    },
+    {
+      "path": "notes/26-hallazgo-auditado-2026-06-29.md",
+      "bytes": 4906,
+      "sha256": "fbc8e17cb911a2e51e15c3f452fe55c3659f94122b5086d009bf19b462882bf8"
+    },
+    {
+      "path": "notes/27-hunter-triples-span-reduction.md",
+      "bytes": 8432,
+      "sha256": "b06a07e83b01d7c71c129cf9f54bf7ceceeb82a3e27c772375ce445f6b33a6b0"
+    },
+    {
+      "path": "notes/28-parallel-w3-options-audit.md",
+      "bytes": 11386,
+      "sha256": "ab24c998793ba31803deb2f1c2f5437cc09c3a2142094475ebefac5a49eee095"
+    },
+    {
+      "path": "notes/30-tier1-reenfoque-hallazgos.md",
+      "bytes": 16745,
+      "sha256": "4a6d21e351d95fa9d41832a6ba0e006866eadf467b38dee5f183e51d0ed7e212"
+    },
+    {
+      "path": "notes/31-tier1-secuencial-progreso.md",
+      "bytes": 14216,
+      "sha256": "c2509895fc01363bab52c0256e5e65fd37b1bc80c31d7dae4fb5c693950c7373"
+    },
+    {
+      "path": "notes/32-w2-experimentos-primario.md",
+      "bytes": 11262,
+      "sha256": "68b8517cd2d7fc40e1be1c365da6ab4a9a92ec2dd42315e05d43be4ba54a35db"
+    },
+    {
+      "path": "notes/33-bang3-general-sin-arista-comun.md",
+      "bytes": 10345,
+      "sha256": "baa36518f3ee7e22e2590889edf3b7a02a8089434e9a1d9d393ca69e8208b387"
+    },
+    {
+      "path": "notes/34-Nc-normalizador-ell-verificado.md",
+      "bytes": 7186,
+      "sha256": "4315b2afe52f4811638b7920351bf14cd195e6a2adba54188dc236a718ffc557"
+    },
+    {
+      "path": "notes/35-nucleo-balanceado-medianas.md",
+      "bytes": 7139,
+      "sha256": "9cdefe2cb9fba4e15fad57484864e6f5cdd191d18808ccd7e5fe2af0384c498b"
+    },
+    {
+      "path": "notes/36-bang-medianas-PROBADO.md",
+      "bytes": 6987,
+      "sha256": "8891f9699c111f37fbfea9b1226ec1352aeebdcec7cd7df4e859029c54369e7e"
+    },
+    {
+      "path": "notes/37-familia-marginal-uniforme-transporte.md",
+      "bytes": 7543,
+      "sha256": "3d5dd1a67576751f9b8f721a485bc16c743a9b520bf4ffd157cbe406d907dc18"
+    },
+    {
+      "path": "notes/38-pscope-y-suficiencia.md",
+      "bytes": 7730,
+      "sha256": "b8d9712377aaa5f78e8ed071232492be57eb3f695aa5b77cf7750a0ee7887533"
+    },
+    {
+      "path": "notes/39-rigidez-suficiencia-pivote.md",
+      "bytes": 6569,
+      "sha256": "f9049e9080fbbe57a93ede159fad65be553b1aba2247b58c7bf00ffe290c07da"
+    },
+    {
+      "path": "notes/40-ambrus-reduccion-verificada.md",
+      "bytes": 8379,
+      "sha256": "3af4236d7fc979f1e1ba61a3431bde7c2a3242103418a4e900a3368161d5d7ed"
+    },
+    {
+      "path": "notes/41-ball-1991-analisis-recuperado.md",
+      "bytes": 8869,
+      "sha256": "20f36c85c3c8302d30c406c577065f02bb6b131cf879c1b7098193ded1b506be"
+    },
+    {
+      "path": "notes/42-refs-papers-resumen.md",
+      "bytes": 11369,
+      "sha256": "cebb00875d7a9d849b7f14743813d3c83f9eb7559f66baf9ed2355ece20e78ae"
+    },
+    {
+      "path": "notes/43-P1-batir-BY.md",
+      "bytes": 7742,
+      "sha256": "f0621523adf5454b5402c5ab02f29eda55d6986bb70873dc6842be7f437754d7"
+    },
+    {
+      "path": "notes/43-P2-ambrus-dimension.md",
+      "bytes": 5739,
+      "sha256": "fd0a854bbd71efe3e10396aa55c2ad12d991ce2ef57d1cfa6b08c2e0e4fdf9a3"
+    },
+    {
+      "path": "notes/43-P3-gardner-suficiencia.md",
+      "bytes": 5267,
+      "sha256": "7d8fc3117285304a85aad69452d664459efd3cab128b486e5c4ae6b7e210412e"
+    },
+    {
+      "path": "notes/43-P4-rigidez-medianas.md",
+      "bytes": 7416,
+      "sha256": "b2f24819d93571440873a99b475a126a83bd7666254f05d21deb179cc7522ee4"
+    },
+    {
+      "path": "notes/44-R2-1-bang-Nc-nogo.md",
+      "bytes": 6450,
+      "sha256": "eedd81348937af4c886a4b2d396f8d5425457021f587698e11f1d5ba6987c5dc"
+    },
+    {
+      "path": "notes/45-R2-2-rigidez-medianas-COMPLETA.md",
+      "bytes": 5201,
+      "sha256": "76698d5afcf39b0e1b1f990092f482ba1168dd1015b86f3e017c4f395a30d7b5"
+    },
+    {
+      "path": "notes/46-R2-4-esqueleto-paper.md",
+      "bytes": 6090,
+      "sha256": "b13c801a394b71a0e466acc571c0f93806a9afdb2bbf17fe12702ad81b8070c6"
+    },
+    {
+      "path": "notes/47-R3-2-medianas-dim-general.md",
+      "bytes": 4764,
+      "sha256": "3455b414702c10d457f647b280ec7806caa8c2a7906d1c8abd3037a06c7cc538"
+    },
+    {
+      "path": "notes/48-R4-4-suficiencia-concurrencia.md",
+      "bytes": 5607,
+      "sha256": "f37eb5a52a569ef0974e59cc772902f640a12b1c0b6433849824e034fad408ca"
+    },
+    {
+      "path": "notes/49-R5-3-perimetro-ponderado-TEOREMA.md",
+      "bytes": 5209,
+      "sha256": "0a3306bfc6eee5bf26604e707b71c8bdf0cb2b992c4dc065adc1c69c3c49cb26"
+    },
+    {
+      "path": "notes/49-R5-4-rescate-M1.md",
+      "bytes": 3083,
+      "sha256": "6f4496b3674bee1b93ef823c3d73dc3bace798fed2d5473f358cdb66bd1c7b7f"
+    },
+    {
+      "path": "notes/50-R6-1-R6-2-fixes-referee-y-apendice.md",
+      "bytes": 4391,
+      "sha256": "640de4aa449f2fb62ef92e0c7f1b3c73dc6d4319aff9a8ea0b2b5892a658720b"
+    },
+    {
+      "path": "notes/50-R6-4-tightness-rigidez-familia-TEOREMA.md",
+      "bytes": 4484,
+      "sha256": "ec6ae0d5464e63ea15fe94cdcb99dde2d14b07c9cb6e364386f15c03e7b5d5de"
+    },
+    {
+      "path": "notes/50-R6-5-caracterizacion-tres-direcciones-TEOREMA.md",
+      "bytes": 3853,
+      "sha256": "9c028dd2249489fd1b66cd2a415555ea82c92cff700cbd1fe7a50e1472971eee"
+    },
+    {
+      "path": "notes/51-R7-0-entrega-dona-rosa-pasada3.md",
+      "bytes": 3485,
+      "sha256": "2aab1b55fc00e8b5ac03edbd2c044fe57ea1b4672ce2f18b162e4c3866838871"
+    },
+    {
+      "path": "notes/51-R7-1-esqueleto-ponderado-d3-TEOREMA.md",
+      "bytes": 4686,
+      "sha256": "30d221eec0d97944817f8d7fd95c067f315f56476df1aa4a43c3b7c97cbfca10"
+    },
+    {
+      "path": "notes/51-R7-2-defecto-transporte-TEOREMAS.md",
+      "bytes": 5622,
+      "sha256": "22343bf4f485b0215b6b0d5794d14f80d41d7e616a8a47606169a33ec5058944"
+    },
+    {
+      "path": "notes/52-R8-7-entrega-dona-rosa-pasada4.md",
+      "bytes": 4925,
+      "sha256": "5bea31781b312f66acd15662cdc8ab1e6818a02bcc425837336abe18ab5946ff"
+    },
+    {
+      "path": "notes/52-R8-pasada-de-precision.md",
+      "bytes": 5078,
+      "sha256": "1cb60706e8f7487e4c6420ce3b64683e3e66524cab166619bdd92a4e14ae45bc"
+    },
+    {
+      "path": "notes/53-R9-ejecucion-dualidad-y-precision.md",
+      "bytes": 12529,
+      "sha256": "83a6b726fd6ac36dd24c8a5ffa4a51b077b1e0991a2a92d7b23e2740f6b65191"
+    },
+    {
+      "path": "notes/53-R9-entrega-dona-rosa-pasada5.md",
+      "bytes": 7753,
+      "sha256": "d1a4807f56153c07bb00b82451483facbc3c03e49dd1dc6a5286be965d07e1b4"
+    },
+    {
+      "path": "notes/54-R10-1-supD-rutaB-refutada-y-certificados-gap.md",
+      "bytes": 9311,
+      "sha256": "600beee34c26acb8f198c8014044373e5b488e9e6ea301880c6dfab4ee483148"
+    },
+    {
+      "path": "notes/54-R10-2-delta-igual-deltac-TEOREMA.md",
+      "bytes": 7724,
+      "sha256": "0c1f9ddd50b726fb2b67ae0f57cf83b4edf896f7eaacbe242fcb6e4c7df428d9"
+    },
+    {
+      "path": "notes/55-R12-ejecucion-pasada6-y-programa-C.md",
+      "bytes": 5839,
+      "sha256": "b30c706d13fb661d360c97c07e2b722a2b9c2d781dc3464f21fbe29fee14f565"
+    },
+    {
+      "path": "notes/55-R12-entrega-dona-rosa-pasada6.md",
+      "bytes": 6620,
+      "sha256": "f65c67ff1a0ebe9c1152d9b97c025c4c8a9cdd1bcfa747e745537992b3828b6d"
+    },
+    {
+      "path": "notes/56-R13-regimen-extremo-TEOREMA-y-estado-C3.md",
+      "bytes": 9126,
+      "sha256": "092d1f289bdac692b2b36c17e02b7e62318cf6765df86ccb20c4cc7fe10cfa6a"
+    },
+    {
+      "path": "notes/57-R14-tilt-TEOREMA-y-BB-sandwich.md",
+      "bytes": 9109,
+      "sha256": "580e6c550f26c53a750eaebc5ee3c87aad91095cc7dc22e8042818c0e96bafb1"
+    },
+    {
+      "path": "notes/58-R15-appendixB-pilar5.tex",
+      "bytes": 5693,
+      "sha256": "d76da48d4e6f760c795592f278241962eb166f55aaec4d6f0a47f224b86a6024"
+    },
+    {
+      "path": "notes/58-R15-certificado-checker-igualdad-lemas.md",
+      "bytes": 7821,
+      "sha256": "d4298fbfa4985c16854ca0cc92b10914991365bad487ef26de351aa566a9a0ac"
+    },
+    {
+      "path": "notes/58-R15-lemas-soundness.tex",
+      "bytes": 9032,
+      "sha256": "81b800b5e07854581013b3212fcc28eeaf920f72963bfc4c2db987dbc12819aa"
+    },
+    {
+      "path": "notes/59-R16-handoff-pasada7.md",
+      "bytes": 6175,
+      "sha256": "f4e8ae42e55899006f968fb1648a9a4fd5d1b4e9eac84032d6d7485c3b6471d5"
+    },
+    {
+      "path": "notes/60-correcciones-C1-C6-pasada8.md",
+      "bytes": 6118,
+      "sha256": "add1351b16f06114b182194535007f5f6a3f95d58464018be588dd95e59fe49c"
+    },
+    {
+      "path": "notes/61-aims-conversion-v1.md",
+      "bytes": 15010,
+      "sha256": "e610bc7cfe360109b4f5af511f355b945b2ac550c29b5b3b53b0e056846df54e"
+    },
+    {
+      "path": "notes/lit-todo.md",
+      "bytes": 2558,
+      "sha256": "d7a1dc177ac4203d460ec6410423876afc3c1e480fa41dc7de97cc924ab03c6b"
+    },
+    {
+      "path": "notes/method-abstraction.md",
+      "bytes": 3873,
+      "sha256": "62a07376933a5a49b65d5e6ab6788eab652a560a0bc0cd5957e8dc9d4ed0f129"
+    },
+    {
+      "path": "paper-ready/00-INDEX.ms",
+      "bytes": 4587,
+      "sha256": "56e10632d43224d5d01cb34a81c2cde7e65311f39773e159507d614273ce68c7",
+      "poison_flag": "asserts since-corrected triangle=>planar (Ambrus) claim"
+    },
+    {
+      "path": "paper-ready/01-witness-measure-method.ms",
+      "bytes": 1152,
+      "sha256": "e0ffc5a6aacd65526f016b5b74ac426e7cc3f77ca55f8701d15efeb64a6998af"
+    },
+    {
+      "path": "paper-ready/02-one-over-d-theorem.ms",
+      "bytes": 1469,
+      "sha256": "1efe869f9457379c04d41ec0362baa8d36f8e5a633cba50ade6db5671d027280"
+    },
+    {
+      "path": "paper-ready/03-refined-bound.ms",
+      "bytes": 1529,
+      "sha256": "b3aec89401595616e270fb51f86550a2ab4a35d4f617476f851ab9e6622e9533"
+    },
+    {
+      "path": "paper-ready/04-vector-reduction.ms",
+      "bytes": 1432,
+      "sha256": "c5f752d5d1467797b63e877f1b1cf9899657bda3950b16354b14bb43b71ed29f"
+    },
+    {
+      "path": "paper-ready/05-two-direction-theorem.ms",
+      "bytes": 2286,
+      "sha256": "6ecab38c572adf12d2b4e40b47b8f88ba59dcdbb6240b9d394763f910824e271"
+    },
+    {
+      "path": "paper-ready/06-negative-results.ms",
+      "bytes": 1986,
+      "sha256": "5b6fdb156cd9db7e37131d6160ea97c5fe7720030d58fb2e1568fba8fb53efb3"
+    },
+    {
+      "path": "paper-ready/07-open-core.ms",
+      "bytes": 4543,
+      "sha256": "221fbb2bb54c7eefc38b282b10d3f2975adf709ec756bbaf77413aa57ffedae5"
+    },
+    {
+      "path": "paper-ready/08-facet-parallel-theorem.ms",
+      "bytes": 2578,
+      "sha256": "16b59ea92aa9ef5dfc009304b2c650960b2c4dd2751c122d699b6e3771af0269"
+    },
+    {
+      "path": "paper-ready/09-general-directions.ms",
+      "bytes": 2351,
+      "sha256": "28f98409e4afd968bd76d0a5bc31fc5b5979a9caf3cefe1a60baeefdda31da18"
+    },
+    {
+      "path": "paper-ready/10-literature.ms",
+      "bytes": 2420,
+      "sha256": "4e759e157aa7f200b3b2d3c040fba7e1e2a27a37ef1ab2c896ebb23cac3231fb"
+    },
+    {
+      "path": "paper-ready/11-vector-map.ms",
+      "bytes": 8094,
+      "sha256": "caedaff988f32b424241e1d05465370984e79b1af4c7cb283403f02ea326ea11"
+    },
+    {
+      "path": "paper-ready/12-full-vector-exploration.ms",
+      "bytes": 7292,
+      "sha256": "034aac4b84a24b82c0b801919a90ffe21790b400cf548bb4497c69659d2d98f2"
+    },
+    {
+      "path": "paper-ready/13-m4-attack-project.ms",
+      "bytes": 4591,
+      "sha256": "ae5d62e139cdc4bb35129bd1a8c8d51e186b4154c0ea3a4508afec06e7759b00"
+    },
+    {
+      "path": "paper-ready/BATTLE-PLAN-RESULTS.md",
+      "bytes": 13093,
+      "sha256": "f3b2f91c29c9e7fd3972b1551ef791922aa5b53ff166a909b1811724f0ed2271"
+    },
+    {
+      "path": "paper-ready/DEEP-RESEARCH-TWO-WALLS.md",
+      "bytes": 17371,
+      "sha256": "f62bbc1391b8eb2abb601cd0fb184d9f9643b51a91dbf0e699ea544402465ef1"
+    },
+    {
+      "path": "paper-ready/FINAL-REPORT-TWO-WALLS.md",
+      "bytes": 8047,
+      "sha256": "1aed73aa1af7fea5c446831635dc301ea489952bf9799611e1223e2b6a2496eb"
+    },
+    {
+      "path": "paper-ready/PROMPT-M4-ATTACK.md",
+      "bytes": 9145,
+      "sha256": "ad27b10b2bb39233de05ea0c77f24ac2a99a7242fc8486679cda48e415efd47b"
+    },
+    {
+      "path": "paper-ready/PROMPT-TWO-WALLS.md",
+      "bytes": 10941,
+      "sha256": "2a31cdb799224bcc55a309f9d2b4bbddafb6eeac7f8621b06ca398762b3f7b3b"
+    },
+    {
+      "path": "pinasco-outreach-draft-y-research.md",
+      "bytes": 8252,
+      "sha256": "d093e9034dd1564bf61658af1a729f03bc0e029093953b2d35c6ea9f68681d42"
+    }
+  ]
+}
